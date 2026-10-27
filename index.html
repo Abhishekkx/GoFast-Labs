@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoFast Labs — Digital Product Studio & Full-Service Agency</title>
+  <meta name="description" content="GoFast Labs is a high-velocity product studio and digital agency engineering sovereign interfaces, resilient web apps, mobile products, and AI automations." />
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-bg text-ink font-body antialiased selection:bg-accent selection:text-ink">
+
+  <!-- Top Scroll Progress Line -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Custom Cursor Elements (Desktop only) -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true">
+    <span class="cursor-text">View<br/>case →</span>
+  </div>
+
+  <!-- Full-Screen Preloader (Runs once per session) -->
+  <aside id="preloader" aria-label="Loading screen">
+    <div class="flex items-center justify-between text-secondary font-mono text-[11px] uppercase tracking-widest">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+        <span>GOFAST LABS // VELOCITY KERNEL</span>
+      </div>
+      <div>SYS: ACTIVE</div>
+    </div>
+    <div id="preloader-streak"></div>
+    <div class="flex items-end justify-between font-mono">
+      <div id="preloader-count" class="text-6xl md:text-8xl font-bold tracking-tighter text-ink">000</div>
+      <div class="text-[12px] uppercase tracking-wider text-secondary">BOOTING ENGINE</div>
+    </div>
+  </aside>
+
+  <!-- Full-Screen Page Transition Overlay -->
+  <div id="page-transition" aria-hidden="true">
+    <div class="flex flex-col items-center gap-3">
+      <span class="font-headline text-3xl font-bold text-surface tracking-tight">GOFAST<span class="text-accent"> // </span>LABS</span>
+      <div class="font-mono text-xs uppercase tracking-widest text-secondary">[ PREPARING RUNTIME ]</div>
+    </div>
+  </div>
+
+  <!-- Top Sticky / Dynamic Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="h-16 w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between">
+      <!-- Wordmark Logo -->
+      <a href="#" class="flex items-center gap-2 group" aria-label="GoFast Labs Homepage">
+        <span class="font-headline text-xl md:text-2xl tracking-tight text-ink font-bold">GOFAST<span class="text-accent">.</span>LABS</span>
+      </a>
+
+      <!-- Desktop Navigation Links with Text-Roll -->
+      <nav class="hidden lg:flex items-center gap-space-lg" aria-label="Primary Navigation">
+        <a class="nav-link-roll text-sm font-medium text-ink transition-colors" href="#services">Services</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="#work-section">Work</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" data-page-link href="/about">About</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="#pricing">Pricing</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="#contact-hub">Contact</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-3 md:gap-space-md">
+        <!-- Live Status Pill -->
+        <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-line font-mono text-[11px] uppercase tracking-wider text-secondary shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+          </span>
+          <span>Available for projects</span>
+        </div>
+
+        <!-- Magnetic Start a Project Button -->
+        <a class="btn-magnetic hidden sm:inline-flex items-center justify-center rounded-full bg-ink text-surface font-body text-xs md:text-sm font-medium px-5 py-2.5 hover:opacity-90 active:scale-[0.98] transition-all" href="#contact-hub">
+          Start a project →
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu" class="lg:hidden p-2 rounded-lg border border-line bg-surface text-ink focus:outline-none">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Full-Screen Overlay Menu -->
+    <div id="mobile-menu" class="fixed inset-0 top-16 bg-bg z-40 flex flex-col justify-between p-8 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden">
+      <nav class="flex flex-col gap-6 pt-4 font-headline text-3xl font-bold tracking-tight">
+        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#services">01. Services</a>
+        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#work-section">02. Work</a>
+        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" data-page-link href="/about">03. About</a>
+        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#pricing">04. Pricing</a>
+        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#contact-hub">05. Contact</a>
+      </nav>
+      <div class="pt-6 border-t border-line space-y-4">
+        <div class="font-mono text-xs uppercase text-secondary">hello@gofastlabs.com</div>
+        <a class="w-full py-4 rounded-full bg-accent text-ink font-headline text-base font-bold text-center block" href="#contact-hub">
+          Start a project →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Canvas Container -->
+  <main class="w-full max-w-[1440px] mx-auto pt-16 min-h-screen bg-bg relative z-10">
+    <div class="flex flex-col w-full text-ink">
+
+      <!-- ================= HERO SECTION ================= -->
+      <section id="hero-section" class="relative w-full px-margin-mobile md:px-margin pt-space-xl pb-space-2xl min-h-[calc(100vh-4rem)] flex flex-col justify-between overflow-hidden">
+        <!-- Faint hairline grid overlay -->
+        <div class="hairline-grid absolute inset-0 pointer-events-none opacity-40"></div>
+
+        <!-- Top Badge Row -->
+        <div class="hero-top-badges relative z-10 flex items-center justify-between">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-line font-mono text-[11px] text-secondary uppercase tracking-widest shadow-sm">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-accent"></span>
+            PRODUCT STUDIO · DIGITAL AGENCY
+          </div>
+          <div class="hidden md:flex items-center gap-space-xs font-mono text-[11px] text-secondary uppercase tracking-wider">
+            <span class="text-ink font-semibold">[ 24H RESPONSE ]</span>
+            <span>VELOCITY-FIRST PARTNERSHIPS</span>
+          </div>
+        </div>
+
+        <!-- Monumental Display Headline -->
+        <div class="hero-headline-container relative z-10 my-space-xl">
+          <h1 class="hero-headline font-headline text-4xl sm:text-6xl md:text-7xl lg:text-[88px] xl:text-[96px] tracking-tighter text-ink font-bold max-w-5xl leading-[0.95]" aria-label="We turn ideas into products. Fast.">
+            We turn ideas into products.
+            <span class="relative inline-block mt-2 md:mt-0">
+              <span class="hero-lime-badge absolute inset-0 bg-accent rounded-xl -rotate-1 shadow-sm"></span>
+              <span class="relative z-10 text-ink px-4 py-1 inline-block -rotate-1 font-bold">Fast.</span>
+            </span>
+          </h1>
+        </div>
+
+        <!-- Hero Content + Card Canvas Split -->
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center my-space-md">
+          <!-- Left Copy + CTA Buttons -->
+          <div class="lg:col-span-5 flex flex-col gap-space-lg">
+            <p class="hero-lead-copy font-body text-lg md:text-xl text-secondary max-w-md font-normal leading-relaxed">
+              GoFast Labs designs, builds and scales websites, apps and brands for founders who can't afford to wait.
+            </p>
+            <div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+              <a class="hero-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-ink text-surface font-body text-sm font-medium px-8 py-3.5 hover:opacity-90 active:scale-[0.98] transition-all shadow-md" href="#contact-hub">
+                Start a project
+              </a>
+              <a class="hero-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-surface border border-line text-ink font-body text-sm font-medium px-8 py-3.5 hover:bg-surface-variant transition-all" href="#work-section">
+                See our work
+              </a>
+            </div>
+
+            <!-- Trust Meta Signals -->
+            <div class="hero-trust-signals pt-space-md flex items-center gap-space-lg">
+              <div class="flex -space-x-2">
+                <span class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-surface flex items-center justify-center font-mono text-[10px] font-bold text-ink">FL</span>
+                <span class="w-8 h-8 rounded-full bg-surface-variant border-2 border-surface flex items-center justify-center font-mono text-[10px] font-bold text-ink">AC</span>
+                <span class="w-8 h-8 rounded-full bg-accent text-ink border-2 border-surface flex items-center justify-center font-mono text-[10px] font-bold">99+</span>
+              </div>
+              <div class="font-mono text-[11px] text-secondary uppercase tracking-wider">
+                Backed by YC, Sequoia & Sovereign founders
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 3-Screen Overlapping Mockup Frame -->
+          <div class="lg:col-span-7 relative">
+            <div class="hero-collage w-full bg-surface rounded-card border border-line p-space-md md:p-space-lg shadow-sm relative overflow-hidden">
+              <div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-line text-secondary font-mono text-[11px] uppercase tracking-wider">
+                <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-accent"></span> LIVE WORKSPACE PREVIEW</span>
+                <span>SYSTEM 2.4.0</span>
+              </div>
+              <div class="relative h-[340px] md:h-[400px] w-full flex items-center justify-center">
+                <!-- Screen 1: Web App Canvas (-3 deg) -->
+                <div class="hero-screen-1 absolute left-2 md:left-6 w-[280px] md:w-[320px] bg-surface-container rounded-xl border border-line shadow-lg p-3 -rotate-3 transition-transform hover:-translate-y-2 hover:rotate-0 duration-300">
+                  <div class="h-4 flex items-center gap-1.5 mb-2 px-1">
+                    <span class="w-2 h-2 rounded-full bg-error"></span>
+                    <span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+                    <span class="w-2 h-2 rounded-full bg-surface-variant"></span>
+                    <span class="ml-auto font-mono text-[9px] text-secondary">hyperflow.studio</span>
+                  </div>
+                  <div class="space-y-2 bg-surface p-3 rounded-lg border border-line">
+                    <div class="flex items-center justify-between">
+                      <span class="font-headline text-[13px] font-bold">Node Canvas</span>
+                      <span class="bg-accent text-ink text-[10px] px-1.5 py-0.5 rounded font-mono font-bold">LIVE</span>
+                    </div>
+                    <div class="h-16 w-full rounded bg-bg flex items-center justify-center p-2">
+                      <svg class="w-full h-full text-ink" fill="none" viewBox="0 0 100 30">
+                        <path d="M0 20 Q 25 5, 50 15 T 100 8" fill="none" stroke="currentColor" stroke-width="2"></path>
+                        <circle cx="50" cy="15" fill="#C6F432" r="3"></circle>
+                        <circle cx="100" cy="8" fill="#0E0E0E" r="3"></circle>
+                      </svg>
+                    </div>
+                    <div class="grid grid-cols-2 gap-1.5 text-[11px] font-mono">
+                      <div class="p-1.5 rounded bg-bg"><span class="text-secondary text-[9px]">SPEED</span><br/>99.8%</div>
+                      <div class="p-1.5 rounded bg-bg"><span class="text-secondary text-[9px]">LATENCY</span><br/>18ms</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Screen 2: Dark Mode Mobile Mockup (0 deg center) -->
+                <div class="hero-screen-2 absolute z-20 w-[190px] md:w-[210px] bg-ink text-surface rounded-[22px] border border-muted/30 shadow-2xl p-3.5 transition-transform hover:scale-105 duration-300">
+                  <div class="flex justify-between items-center text-[9px] font-mono text-secondary mb-3 px-1">
+                    <span>9:41</span>
+                    <div class="w-8 h-2 bg-neutral-800 rounded-full"></div>
+                    <span class="material-symbols-outlined text-[12px] text-accent">battery_full</span>
+                  </div>
+                  <div class="bg-neutral-900 p-2.5 rounded-xl border border-neutral-800 space-y-2 mb-2">
+                    <div class="text-[10px] text-surface-dim uppercase font-mono">Total Balance</div>
+                    <div class="font-headline text-[18px] text-surface font-bold">$142,850.00</div>
+                    <div class="inline-flex items-center gap-1 text-[10px] text-accent font-mono">
+                      <span class="material-symbols-outlined text-[12px]">trending_up</span> +34.2% this sprint
+                    </div>
+                  </div>
+                  <div class="space-y-1.5">
+                    <div class="p-1.5 rounded-lg bg-neutral-900 flex items-center justify-between text-[10px]">
+                      <span class="text-surface-dim">Contract Audit</span>
+                      <span class="text-accent font-bold">DONE</span>
+                    </div>
+                    <div class="p-1.5 rounded-lg bg-neutral-900 flex items-center justify-between text-[10px]">
+                      <span class="text-surface-dim">Token Vault</span>
+                      <span class="text-surface-dim">98ms</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Screen 3: Analytics Dashboard (+3 deg right) -->
+                <div class="hero-screen-3 absolute right-2 md:right-6 w-[270px] md:w-[310px] bg-surface rounded-xl border border-line shadow-lg p-3 rotate-3 transition-transform hover:-translate-y-2 hover:rotate-0 duration-300">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-mono text-[10px] uppercase text-secondary">Volt Telemetry</span>
+                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                  </div>
+                  <div class="p-2 rounded-lg bg-bg border border-line space-y-2">
+                    <div class="flex justify-between items-baseline">
+                      <span class="font-headline text-2xl font-bold text-ink">4.8k</span>
+                      <span class="text-ink text-[10px] font-mono font-semibold">Active Fleet</span>
+                    </div>
+                    <div class="h-14 flex items-end gap-1 px-1">
+                      <div class="w-1/6 bg-surface-dim h-[35%] rounded-t"></div>
+                      <div class="w-1/6 bg-surface-dim h-[50%] rounded-t"></div>
+                      <div class="w-1/6 bg-surface-dim h-[40%] rounded-t"></div>
+                      <div class="w-1/6 bg-surface-dim h-[75%] rounded-t"></div>
+                      <div class="w-1/6 bg-surface-dim h-[60%] rounded-t"></div>
+                      <div class="w-1/6 bg-accent h-[95%] rounded-t"></div>
+                    </div>
+                  </div>
+                  <div class="mt-2 flex justify-between text-[10px] font-mono text-secondary">
+                    <span>0.00ms RTT</span>
+                    <span class="text-ink font-semibold">ALL SYSTEMS NOMINAL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Bottom Bar -->
+        <div class="relative z-10 pt-space-lg border-t border-line flex items-center justify-between font-mono text-[11px] text-secondary uppercase tracking-widest">
+          <div class="flex items-center gap-2">
+            <span class="animate-bounce">↓</span>
+            <span>Scroll to explore</span>
+          </div>
+          <div>Est. 2026 — India / Worldwide</div>
+        </div>
+      </section>
+
+      <!-- ================= MARQUEE STRIP ================= -->
+      <section class="w-full border-y border-line bg-surface overflow-hidden py-5 select-none" aria-label="Disciplines strip">
+        <div class="marquee-track flex whitespace-nowrap gap-8 items-center w-max">
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Product Design</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Web Development</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Mobile Apps</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">GEO &amp; AI Search</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">AI Automation</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Application Security</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Graphic Design</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Growth Marketing</span>
+          <span class="text-accent text-2xl">✦</span>
+
+          <!-- Duplicate Set for Continuous Track -->
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Product Design</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Web Development</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Mobile Apps</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">GEO &amp; AI Search</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">AI Automation</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Application Security</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Graphic Design</span>
+          <span class="text-accent text-2xl">✦</span>
+          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Growth Marketing</span>
+          <span class="text-accent text-2xl">✦</span>
+        </div>
+      </section>
+
+      <!-- ================= 01 — SERVICES SECTION (8 Services, Horizontal Pinning) ================= -->
+      <section id="services" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-2xl overflow-hidden">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md border-b border-line pb-space-lg">
+          <div class="space-y-space-xs">
+            <div class="font-mono text-xs text-secondary uppercase tracking-widest">01 — SERVICES</div>
+            <h2 class="font-headline text-3xl md:text-5xl lg:text-6xl text-ink font-bold tracking-tight">Everything you need to launch, grow and stay secure.</h2>
+          </div>
+          <p class="font-body text-base text-secondary max-w-sm">
+            Integrated disciplines architected for raw tempo. Zero handoff friction, zero bloatware meetings.
+          </p>
+        </div>
+
+        <!-- Horizontal Scrollable Container (Desktop Pinning) -->
+        <div class="relative w-full">
+          <div id="services-track" class="flex flex-col lg:flex-row gap-gutter transition-transform">
+            
+            <!-- Card 01: Website Building -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">01</span>
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
+                    <span class="material-symbols-outlined text-[20px]">terminal</span>
+                  </div>
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Website Building</h3>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  Marketing sites, web apps, and headless CMS built on modern edge infrastructure with zero bloat.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Marketing Sites</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Web Apps</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Headless CMS</span>
+              </div>
+            </div>
+
+            <!-- Card 02: Mobile Apps -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">02</span>
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
+                    <span class="material-symbols-outlined text-[20px]">smartphone</span>
+                  </div>
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Mobile Apps</h3>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  iOS, Android, and high-performance cross-platform mobile experiences with tactile physics and fluid gestures.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">iOS</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Android</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Cross-Platform</span>
+              </div>
+            </div>
+
+            <!-- Card 03: SEO -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">03</span>
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
+                    <span class="material-symbols-outlined text-[20px]">trending_up</span>
+                  </div>
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">SEO</h3>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  Technical SEO, content architecture, and Google ranking engines engineered for compounding organic authority.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Google Rankings</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Technical SEO</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Content Engine</span>
+              </div>
+            </div>
+
+            <!-- Card 04: GEO (Generative Engine Optimization) -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">04</span>
+                  <div class="w-10 h-10 rounded-full bg-accent text-ink flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[20px]">psychology</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 mb-space-sm">
+                  <h3 class="font-headline text-2xl text-ink font-semibold">GEO</h3>
+                  <span class="font-mono text-[10px] bg-accent text-ink font-bold px-2 py-0.5 rounded-full uppercase">Differentiator</span>
+                </div>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  Generative Engine Optimization: getting your brand discovered, recommended, and cited in ChatGPT, Gemini, and Perplexity.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">AI Answers</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Citation Share</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">LLM Visibility</span>
+              </div>
+            </div>
+
+            <!-- Card 05: AI Automation -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">05</span>
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
+                    <span class="material-symbols-outlined text-[20px]">memory</span>
+                  </div>
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">AI Automation</h3>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  Production LLM integrations, conversational chatbots, autonomous agents, and end-to-end workflow automation.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Chatbots</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">AI Features</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Workflows</span>
+              </div>
+            </div>
+
+            <!-- Card 06: Application Security -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">06</span>
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
+                    <span class="material-symbols-outlined text-[20px]">shield</span>
+                  </div>
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Application Security</h3>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  Exhaustive security audits, vulnerability testing, and hardened code reviews to protect enterprise infrastructure.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Security Audits</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Pen Testing</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Secure Code</span>
+              </div>
+            </div>
+
+            <!-- Card 07: Graphic Design -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">07</span>
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
+                    <span class="material-symbols-outlined text-[20px]">palette</span>
+                  </div>
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Graphic Design</h3>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  Uncompromising brand identities, iconic logos, guidelines, and high-impact social creative assets.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Branding</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Logos</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Social Creatives</span>
+              </div>
+            </div>
+
+            <!-- Card 08: Marketing -->
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+              <div>
+                <div class="flex items-center justify-between mb-space-lg">
+                  <span class="font-mono text-sm text-secondary font-semibold">08</span>
+                  <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
+                    <span class="material-symbols-outlined text-[20px]">campaign</span>
+                  </div>
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Marketing</h3>
+                <p class="font-body text-secondary text-sm md:text-base mb-space-lg">
+                  Performance ads, social media distribution networks, and aggressive growth campaigns built for conversion.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 pt-space-md border-t border-line">
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Performance Ads</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Social Media</span>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container font-mono text-[11px] text-secondary">Growth</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Progress Indicator Strip -->
+        <div class="flex items-center justify-between pt-space-sm border-t border-line">
+          <div class="flex items-center gap-space-md w-full sm:w-1/3">
+            <span id="services-counter" class="font-mono text-sm text-ink font-bold">01 / 08</span>
+            <div class="h-1 flex-1 bg-surface-variant rounded-full overflow-hidden">
+              <div id="services-progress-bar" class="h-full bg-accent w-[12.5%] rounded-full transition-all duration-150"></div>
+            </div>
+          </div>
+          <div class="hidden sm:block font-mono text-[11px] text-secondary uppercase tracking-wider">
+            HORIZONTAL SCROLL ALL 8 DISCIPLINES
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 02 — SELECTED WORK SECTION ================= -->
+      <section id="work-section" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-2xl">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md border-b border-line pb-space-lg">
+          <div class="space-y-space-xs">
+            <div class="font-mono text-xs text-secondary uppercase tracking-widest">02 — SELECTED WORK</div>
+            <h2 class="font-headline text-3xl md:text-5xl lg:text-6xl text-ink font-bold tracking-tight">Work that moves fast.</h2>
+          </div>
+          <a class="btn-magnetic font-mono text-sm text-ink hover:text-secondary flex items-center gap-1 group transition-colors" data-page-link href="/work">
+            <span>View all projects</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+
+        <!-- Asymmetric 2-Column Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+          
+          <!-- Project 1: HyperFlow Studio (Large Aspect) -->
+          <div class="work-card md:col-span-7 bg-surface rounded-card border border-line p-space-lg group hover:border-ink transition-all cursor-pointer" data-cursor="work">
+            <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line">
+              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-51qQ4S6k9tIfMfinVgZVNcC57h_vJiOEC3fGiosSXvPIvXQRCvFRq1JGXAQXNj2NQVVSMN7vnn-Umm0Xs00LgG4DOXwQgiafDN2FSyvLpKnFCSZHbWN_Gq9laix5SqWs_wIBHR7lM52czImCf6_fRFDboihU5J6761z863TKKEmGdtqczhiuo-NuwprnGC79twSzNz2nhgUSw0TArWlJfE-18poSwA5IMladXuqFYmZGDH8RLXXu" 
+                   alt="HyperFlow Studio Canvas Workspace UI" 
+                   width="720" height="400" loading="lazy" />
+              <div class="absolute top-4 left-4 font-mono text-[11px] bg-ink text-surface px-3 py-1 rounded-full uppercase tracking-wider">
+                CANVAS 2.0
+              </div>
+            </div>
+            <div class="flex items-center justify-between mb-space-xs">
+              <h3 class="work-title font-headline text-2xl md:text-3xl text-ink font-bold">HyperFlow Studio</h3>
+              <span class="work-meta font-mono text-sm text-secondary">2026</span>
+            </div>
+            <p class="work-desc font-body text-secondary text-sm md:text-base mb-space-md">Next-generation real-time collaboration canvas engineered for distributed systems.</p>
+            <div class="flex items-center gap-2">
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">Product Design</span>
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">Web App</span>
+            </div>
+          </div>
+
+          <!-- Project 2: Kroma Fintech (Compact Aspect) -->
+          <div class="work-card md:col-span-5 bg-surface rounded-card border border-line p-space-lg group hover:border-ink transition-all cursor-pointer" data-cursor="work">
+            <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line flex items-center justify-center">
+              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPsGTTaTMQ9UIdcsc9qSaWKu9G6qToTqXbPNpTbIN6DRe4zP1vip7LP2JjZ_ondS8CWICDnhfDSXewx_vT8Rvl6X5M8Ue6Df2o5-J_Ks6XN24EOoD2FT-BFGazm3uxnN3Tmpt4b7oGgUKcPYHXHz0yIdKPY6qe4h50UannBtC7cr8j8klK1sOBQPUDtrNKXvieboXctklwlCnusLoroEY8-isp_ipDUQUqxx0tfUgYUB_HJhLxa5_7" 
+                   alt="Kroma Fintech Mobile App Screenshot" 
+                   width="500" height="400" loading="lazy" />
+              <div class="absolute top-4 left-4 font-mono text-[11px] bg-accent text-ink px-3 py-1 rounded-full uppercase tracking-wider font-bold">
+                SERIES A
+              </div>
+            </div>
+            <div class="flex items-center justify-between mb-space-xs">
+              <h3 class="work-title font-headline text-2xl md:text-3xl text-ink font-bold">Kroma Fintech</h3>
+              <span class="work-meta font-mono text-sm text-secondary">2025</span>
+            </div>
+            <p class="work-desc font-body text-secondary text-sm md:text-base mb-space-md">Neo-banking mobile experience bridging cross-border settlements with sub-second finality.</p>
+            <div class="flex items-center gap-2">
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">Mobile App</span>
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">iOS</span>
+            </div>
+          </div>
+
+          <!-- Project 3: Aura Intelligence (Compact Aspect) -->
+          <div class="work-card md:col-span-5 bg-surface rounded-card border border-line p-space-lg relative group hover:border-ink transition-all cursor-pointer" data-cursor="work">
+            <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line">
+              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_3D6lXSpboTAJB0lXxt0i1TuLOwExSqJNBPoO00lTiGorvnPjfTdlGwyOtTG6IqbhVUOOq4TKzEEbxQgfPMvD4V7btfSj42oZnHrukV8oueC687jpJqzQ0PRqnrOZYD40vDfGv8Xba5Woix923aHigR1e83zhRo28JHyQqslXLHhKPPWwsJfpoWS6N5ACMTQtjjXpfZdRXbxx1GknHJmUwGVAx2P8HZq82-6Ldmgd0mlF3FJTZN-T" 
+                   alt="Aura Intelligence Neural AI Workstation Interface" 
+                   width="500" height="400" loading="lazy" />
+              <div class="absolute top-4 left-4 font-mono text-[11px] bg-ink text-surface px-3 py-1 rounded-full uppercase tracking-wider">
+                AI WORKSTATION
+              </div>
+            </div>
+            <div class="flex items-center justify-between mb-space-xs">
+              <h3 class="work-title font-headline text-2xl md:text-3xl text-ink font-bold">Aura Intelligence</h3>
+              <span class="work-meta font-mono text-sm text-secondary">2026</span>
+            </div>
+            <p class="work-desc font-body text-secondary text-sm md:text-base mb-space-md">Generative AI enterprise workstation designed for synthesis teams and researchers.</p>
+            <div class="flex items-center gap-2">
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">Branding</span>
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">Web App</span>
+            </div>
+          </div>
+
+          <!-- Project 4: Volt Mobility (Large Aspect) -->
+          <div class="work-card md:col-span-7 bg-surface rounded-card border border-line p-space-lg group hover:border-ink transition-all cursor-pointer" data-cursor="work">
+            <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line">
+              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGIlM6eiPAONjeO6J9_4UqEtIvujd6bVcfzt6bUjjHC7jZABZpUI8i4GIxUWVFbbjn_YwRbJbMnm6XY0Bkwc9YHUtuWUNWvHy33rKSjxFCic5lhPR5iVeboV7923vTTWB6UX0L6N8GrnZdAC7qvchgv2dhkWYmljx2DS_xdguo28gcsouLTzaoCqsVfCxIinCzR6D6tLCTyEFyWNO9J66rtMzTgthQxtm0xTTHCvRhETLUPta2mCMd" 
+                   alt="Volt Mobility EV Fleet Telemetry Dashboard" 
+                   width="720" height="400" loading="lazy" />
+              <div class="absolute top-4 left-4 font-mono text-[11px] bg-ink text-surface px-3 py-1 rounded-full uppercase tracking-wider">
+                ENTERPRISE SCALE
+              </div>
+            </div>
+            <div class="flex items-center justify-between mb-space-xs">
+              <h3 class="work-title font-headline text-2xl md:text-3xl text-ink font-bold">Volt Mobility</h3>
+              <span class="work-meta font-mono text-sm text-secondary">2025</span>
+            </div>
+            <p class="work-desc font-body text-secondary text-sm md:text-base mb-space-md">Fleet orchestration and real-time battery analytics telemetry dashboard.</p>
+            <div class="flex items-center gap-2">
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">Design System</span>
+              <span class="work-tag font-mono text-[11px] px-2.5 py-1 rounded-full bg-surface-container text-secondary">Frontend</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= NUMBERS SECTION ================= -->
+      <section id="numbers-section" class="w-full px-margin-mobile md:px-margin py-space-2xl">
+        <div class="grid grid-cols-2 lg:grid-cols-4 border-y border-line bg-surface">
+          <!-- Stat 1: 40+ -->
+          <div class="p-space-lg md:p-space-xl border-r border-b lg:border-b-0 border-line flex flex-col justify-between relative">
+            <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">VELOCITY</span>
+            <div class="space-y-1">
+              <div id="stat-40" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <p class="font-mono text-xs text-secondary">Products launched</p>
+            </div>
+          </div>
+
+          <!-- Stat 2: 2-wk -->
+          <div class="p-space-lg md:p-space-xl lg:border-r border-b lg:border-b-0 border-line flex flex-col justify-between relative">
+            <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">CADENCE</span>
+            <div class="space-y-1">
+              <div id="stat-2wk" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <p class="font-mono text-xs text-secondary">Design sprints</p>
+            </div>
+          </div>
+
+          <!-- Stat 3: 12 -->
+          <div class="p-space-lg md:p-space-xl border-r border-line flex flex-col justify-between relative">
+            <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">FOOTPRINT</span>
+            <div class="space-y-1">
+              <div id="stat-12" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <p class="font-mono text-xs text-secondary">Countries served</p>
+            </div>
+          </div>
+
+          <!-- Stat 4: 98% -->
+          <div class="p-space-lg md:p-space-xl flex flex-col justify-between relative">
+            <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">TRUST</span>
+            <div class="space-y-1">
+              <div id="stat-98" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <p class="font-mono text-xs text-secondary">Client retention</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 03 — PROCESS SECTION ("HOW WE WORK") ================= -->
+      <section id="process-section" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-2xl">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md border-b border-line pb-space-lg">
+          <div class="space-y-space-xs">
+            <div class="font-mono text-xs text-secondary uppercase tracking-widest">03 — HOW WE WORK</div>
+            <h2 class="font-headline text-3xl md:text-5xl lg:text-6xl text-ink font-bold tracking-tight">From kickoff to launch in weeks, not months.</h2>
+          </div>
+          <div class="font-mono text-xs px-3 py-1.5 rounded-full bg-surface border border-line text-secondary uppercase">
+            Continuous Integration
+          </div>
+        </div>
+
+        <!-- 4 Connected Process Nodes -->
+        <div class="relative w-full">
+          <!-- Desktop Connecting SVG Line -->
+          <div class="hidden lg:block absolute top-7 left-12 right-12 h-1 pointer-events-none z-0">
+            <svg class="w-full h-2 overflow-visible" preserveAspectRatio="none">
+              <line x1="0" y1="1" x2="100%" y2="1" stroke="#E4E1DB" stroke-width="2" stroke-dasharray="6 6"></line>
+              <line id="process-line-desktop" x1="0" y1="1" x2="100%" y2="1" stroke="#C6F432" stroke-width="4" stroke-linecap="round"></line>
+            </svg>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter relative z-10">
+            <!-- 01 Discover -->
+            <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
+              <div class="space-y-space-md">
+                <div class="process-circle w-14 h-14 rounded-full bg-accent text-ink flex items-center justify-center font-headline font-bold text-lg shadow-sm border-2 border-surface transition-colors duration-300">
+                  01
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-bold">Discover</h3>
+                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                  Uncover leverage points, map technical constraints, and define core product scope in high-speed alignment sessions.
+                </p>
+              </div>
+              <div class="mt-space-lg font-mono text-[11px] text-ink uppercase font-semibold">
+                Sprint Days 1–3
+              </div>
+            </div>
+
+            <!-- 02 Design -->
+            <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
+              <div class="space-y-space-md">
+                <div class="process-circle w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg shadow-sm transition-colors duration-300">
+                  02
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-bold">Design</h3>
+                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                  High-fidelity interactive prototypes in rapid 48-hour feedback cycles. Test real ergonomics before writing single line.
+                </p>
+              </div>
+              <div class="mt-space-lg font-mono text-[11px] text-ink uppercase font-semibold">
+                Sprint Days 4–8
+              </div>
+            </div>
+
+            <!-- 03 Build -->
+            <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
+              <div class="space-y-space-md">
+                <div class="process-circle w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg transition-colors duration-300">
+                  03
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-bold">Build</h3>
+                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                  Production-ready code built with modern frameworks and strict performance budgets. Instant staging deployments.
+                </p>
+              </div>
+              <div class="mt-space-lg font-mono text-[11px] text-secondary uppercase">
+                Sprint Days 9–14
+              </div>
+            </div>
+
+            <!-- 04 Launch & Grow -->
+            <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
+              <div class="space-y-space-md">
+                <div class="process-circle w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg transition-colors duration-300">
+                  04
+                </div>
+                <h3 class="font-headline text-2xl text-ink font-bold">Launch &amp; Grow</h3>
+                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                  Frictionless deployment, instrumentation, DNS cutover, and ongoing telemetry growth loops to optimize conversions.
+                </p>
+              </div>
+              <div class="mt-space-lg font-mono text-[11px] text-secondary uppercase">
+                Continuous Iteration
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 04 — PRICING SECTION ================= -->
+      <section id="pricing" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-2xl">
+        <div class="text-center max-w-xl mx-auto space-y-space-xs">
+          <div class="font-mono text-xs text-secondary uppercase tracking-widest">04 — PRICING</div>
+          <h2 class="font-headline text-3xl md:text-5xl lg:text-6xl text-ink font-bold tracking-tight">Simple plans. No surprises.</h2>
+          <p class="font-body text-base text-secondary">Predictable pricing built for founder clarity. Choose fixed velocity or full squad retainers.</p>
+        </div>
+
+        <!-- Pricing Switcher Pill -->
+        <div class="flex justify-center">
+          <div id="pricing-toggle" class="relative inline-flex p-1 rounded-full bg-surface-container border border-line">
+            <!-- Sliding background pill indicator -->
+            <div id="pricing-toggle-pill" class="absolute top-1 bottom-1 left-1 rounded-full bg-ink shadow-sm pointer-events-none" style="width: 140px;"></div>
+            
+            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-semibold text-surface is-active transition-colors" data-plan="project" type="button">
+              Project-based
+            </button>
+            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-medium text-secondary hover:text-ink transition-colors" data-plan="monthly" type="button">
+              Monthly subscription
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 Pricing Cards Side-by-Side -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-stretch">
+          
+          <!-- Plan 1: Launch -->
+          <div class="pricing-card bg-surface rounded-card border border-line p-space-xl flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="font-mono text-xs text-secondary uppercase mb-2">SPRINT SQUAD</div>
+              <h3 class="font-headline text-2xl font-bold text-ink">Launch</h3>
+              <p class="font-body text-secondary text-sm mt-1 mb-6">Fixed-scope website or MVP product experience.</p>
+              
+              <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
+                <span id="launch-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-ink">$2,499</span>
+                <span id="launch-cadence" class="font-mono text-xs text-secondary uppercase">/ fixed</span>
+              </div>
+
+              <div class="space-y-3.5 mb-8">
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>1–2 weeks turnaround</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>Full responsive design system</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>CMS or modern full-stack code</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>SEO &amp; analytics instrumentation</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>30 days post-launch support</span>
+                </div>
+              </div>
+            </div>
+
+            <a class="btn-magnetic w-full py-3.5 rounded-full border border-ink text-ink font-body text-sm font-semibold text-center hover:bg-ink hover:text-surface transition-colors" href="#contact-hub">
+              Choose Launch
+            </a>
+          </div>
+
+          <!-- Plan 2: Scale (Highlighted Center Card with Border Beam) -->
+          <div class="pricing-card border-beam-card bg-ink text-surface rounded-card p-space-xl flex flex-col justify-between relative shadow-2xl transform lg:-translate-y-2">
+            <!-- Most Popular Pill -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink px-4 py-1 rounded-full font-mono text-[11px] uppercase tracking-wider font-bold shadow-md z-20">
+              Most popular
+            </div>
+
+            <div>
+              <div class="font-mono text-xs text-accent uppercase mb-2">DEDICATED BANDWIDTH</div>
+              <h3 class="font-headline text-2xl font-bold text-surface">Scale</h3>
+              <p class="font-body text-surface-dim text-sm mt-1 mb-6">Ongoing design &amp; dev subscription. Pause or cancel anytime.</p>
+              
+              <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
+                <span id="scale-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-surface">$3,999</span>
+                <span id="scale-cadence" class="font-mono text-xs text-surface-dim uppercase">/ month</span>
+              </div>
+
+              <div class="space-y-3.5 mb-8">
+                <div class="flex items-center gap-3 text-sm text-surface">
+                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Continuous feature delivery</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-surface">
+                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>48h turnaround per request</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-surface">
+                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Unlimited design &amp; dev backlog</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-surface">
+                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Direct Slack channel with founders</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-surface">
+                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <span>Senior staff engineers only</span>
+                </div>
+              </div>
+            </div>
+
+            <a class="btn-magnetic w-full py-3.5 rounded-full bg-accent text-ink font-body text-sm font-bold text-center hover:opacity-90 active:scale-[0.98] transition-all shadow-md z-20" href="#contact-hub">
+              Start Scale Subscription
+            </a>
+          </div>
+
+          <!-- Plan 3: Partner -->
+          <div class="pricing-card bg-surface rounded-card border border-line p-space-xl flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="font-mono text-xs text-secondary uppercase mb-2">FULL EMBED</div>
+              <h3 class="font-headline text-2xl font-bold text-ink">Partner</h3>
+              <p class="font-body text-secondary text-sm mt-1 mb-6">Dedicated squad for complex scaling products &amp; AI stacks.</p>
+              
+              <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
+                <span class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-ink">Custom</span>
+                <span class="font-mono text-xs text-secondary uppercase">/ bespoke</span>
+              </div>
+
+              <div class="space-y-3.5 mb-8">
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>Embedded full-stack squad</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>Custom architecture &amp; LLM agents</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>Weekly synchronized sprint roadmaps</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>Enterprise SLA with guaranteed uptime</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-ink">
+                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <span>SOC2 &amp; security posture audits</span>
+                </div>
+              </div>
+            </div>
+
+            <a class="btn-magnetic w-full py-3.5 rounded-full border border-ink text-ink font-body text-sm font-semibold text-center hover:bg-ink hover:text-surface transition-colors" href="#contact-hub">
+              Contact Partners
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= FINAL CTA & INVERTED FOOTER (Under-Page Reveal) ================= -->
+  <footer id="contact-hub" class="w-full bg-ink text-surface rounded-t-[32px] overflow-hidden relative z-20">
+    <!-- Huge Climax Headline Row -->
+    <div class="px-margin-mobile md:px-margin pt-space-3xl pb-space-2xl border-b border-muted/30 relative">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-xl">
+        <h2 class="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-[104px] xl:text-[116px] tracking-tighter font-bold uppercase text-surface leading-[0.9]" aria-label="Let's go fast.">
+          <span class="inline-block overflow-hidden"><span class="climax-char inline-block">L</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">E</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">T</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">'</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">S</span></span>
+          <span class="inline-block w-4"></span>
+          <span class="inline-block overflow-hidden"><span class="climax-char inline-block">G</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">O</span></span>
+          <span class="inline-block w-4"></span>
+          <span class="inline-block overflow-hidden"><span class="climax-char inline-block">F</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">A</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">S</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">T</span></span><span class="climax-char inline-block text-accent">.</span>
+        </h2>
+        
+        <a class="footer-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-accent text-ink font-headline text-lg md:text-xl font-bold px-10 py-6 hover:scale-105 active:scale-95 transition-all shadow-xl group self-start lg:self-auto" href="mailto:hello@gofastlabs.com">
+          <span>Start a project</span>
+          <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Studio Details and Navigation Hub -->
+    <div class="px-margin-mobile md:px-margin py-space-2xl grid grid-cols-1 md:grid-cols-12 gap-gutter">
+      <!-- Col 1: Wordmark & Direct line -->
+      <div class="footer-col md:col-span-5 flex flex-col justify-between space-y-space-md">
+        <div>
+          <div class="font-headline text-2xl font-bold tracking-tight text-surface">
+            GOFAST<span class="text-accent"> // </span>LABS
+          </div>
+          <p class="font-body text-sm md:text-base text-surface-dim mt-2 max-w-sm leading-relaxed">
+            High-precision digital product studio engineering sovereign interfaces and hyper-scalable software systems.
+          </p>
+        </div>
+        <div>
+          <span class="font-mono text-xs text-surface-dim uppercase tracking-wider block mb-1">Direct Line</span>
+          <a class="font-headline text-xl md:text-2xl text-accent hover:underline font-semibold" href="mailto:hello@gofastlabs.com">
+            hello@gofastlabs.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation Columns -->
+      <div class="footer-col md:col-span-4 grid grid-cols-2 gap-space-md">
+        <div>
+          <span class="font-mono text-xs text-surface-dim uppercase tracking-widest block mb-4">Navigation</span>
+          <ul class="space-y-2.5 font-body text-sm text-surface-dim">
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#services">Services</a></li>
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#work-section">Work</a></li>
+            <li><a class="footer-link-roll hover:text-accent transition-colors" data-page-link href="/about">About</a></li>
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#pricing">Pricing</a></li>
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#contact-hub">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="font-mono text-xs text-surface-dim uppercase tracking-widest block mb-4">Connect</span>
+          <ul class="space-y-2.5 font-body text-sm text-surface-dim">
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a></li>
+            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Col 3: Terminal Status Box -->
+      <div class="footer-col md:col-span-3 bg-neutral-900 rounded-xl p-space-md border border-neutral-800 flex flex-col justify-between">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-surface-dim font-mono text-[11px]">
+            <span>[ SYSTEM CORE ]</span>
+            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+          </div>
+          <div class="font-mono text-sm text-surface font-semibold">
+            Q2 Availability: 2 Open Slots
+          </div>
+          <p class="font-body text-xs text-surface-dim leading-snug">
+            Currently accepting venture-backed products and accelerated brand overhauls.
+          </p>
+        </div>
+        <div class="pt-3 border-t border-neutral-800 font-mono text-[11px] text-accent">
+          ping: 14ms (EDGE/GLOBAL)
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Mono Row -->
+    <div class="px-margin-mobile md:px-margin py-space-md border-t border-muted/20 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-surface-dim">
+      <div>© 2026 GOFAST LABS INC. ALL RIGHTS RESERVED.</div>
+      <div class="text-secondary font-semibold">BUILT FAST. BUILT RIGHT.</div>
+      <div class="flex gap-4">
+        <a class="hover:text-surface transition-colors" href="#">PROTOCOL</a>
+        <span>·</span>
+        <a class="hover:text-surface transition-colors" href="#">SECURITY</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript Module -->
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

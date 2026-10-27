@@ -1,0 +1,308 @@
+@import "./tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Reset & Typography */
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--ink);
+    scroll-behavior: auto; /* Handled by Lenis */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Lenis smooth scrolling rules */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Selection style */
+  ::selection {
+    background-color: var(--accent);
+    color: #0E0E0E;
+  }
+}
+
+/* Scroll progress bar at top */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--accent);
+  z-index: 100;
+  pointer-events: none;
+  transform-origin: left center;
+}
+
+/* Custom Cursor (desktop fine pointer only) */
+@media (pointer: fine) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor input,
+  body.has-custom-cursor select,
+  body.has-custom-cursor [role="button"] {
+    cursor: none;
+  }
+
+  #cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--ink);
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+
+  #cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(14, 14, 14, 0.4);
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                background-color 0.3s ease;
+    overflow: hidden;
+  }
+
+  #cursor-ring.cursor-hover {
+    width: 56px;
+    height: 56px;
+    background-color: rgba(198, 244, 50, 0.18);
+    border-color: var(--ink);
+  }
+
+  #cursor-ring.cursor-work {
+    width: 96px;
+    height: 96px;
+    background-color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  #cursor-ring .cursor-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #0E0E0E;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.1;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  #cursor-ring.cursor-work .cursor-text {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (pointer: coarse) {
+  #cursor-dot, #cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Nav Text Roll Hover Effect */
+.text-roll {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  height: 1.3em;
+  line-height: 1.3em;
+  vertical-align: middle;
+}
+
+.text-roll-inner {
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.text-roll:hover .text-roll-inner,
+a:hover .text-roll .text-roll-inner {
+  transform: translateY(-50%);
+}
+
+.text-roll-item {
+  display: block;
+  height: 1.3em;
+  line-height: 1.3em;
+  white-space: nowrap;
+}
+
+/* Hairline Grid Overlay */
+.hairline-grid {
+  background-image: 
+    linear-gradient(to right, #E4E1DB 1px, transparent 1px),
+    linear-gradient(to bottom, #E4E1DB 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
+
+/* Animated Conic Border Beam for Scale Card */
+@property --beam-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.border-beam-card {
+  position: relative;
+  border-radius: 20px;
+  background-clip: padding-box;
+}
+
+.border-beam-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0%,
+    transparent 50%,
+    #C6F432 80%,
+    transparent 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotateBeam 4s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes rotateBeam {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+/* Split Text Reveal Mask */
+.split-line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.split-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.split-word {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+/* Preloader Layer */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem;
+  pointer-events: auto;
+}
+
+#preloader-streak {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: var(--accent);
+  box-shadow: 0 0 16px rgba(198, 244, 50, 0.8);
+  transform: translateY(-50%);
+}
+
+/* Page Transition Wipe Panel */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background-color: #0E0E0E;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+#page-transition.is-active {
+  pointer-events: auto;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #preloader {
+    display: none !important;
+  }
+  #cursor-dot, #cursor-ring {
+    display: none !important;
+  }
+  .split-word {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,30 @@
+:root {
+  /* Surface & Base Colors */
+  --bg: #F5F3EF;
+  --surface: #FFFFFF;
+  --surface-container: #F0EEEA;
+  --surface-dim: #DBD8D4;
+  --surface-variant: #E4E2DE;
+  
+  /* Ink Colors */
+  --ink: #0E0E0E;
+  --muted: #6B6B6B;
+  --line: #E4E1DB;
+  
+  /* Kinetic Accent */
+  --accent: #C6F432;
+  --accent-text: #0E0E0E;
+  
+  /* Dimensions & Geometry */
+  --radius-card: 20px;
+  --radius-pill: 9999px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  
+  /* Easing */
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1); /* expo.out */
+  --ease-panel: cubic-bezier(0.77, 0, 0.175, 1); /* power4.inOut */
+  
+  /* Layout */
+  --max-width: 1440px;
+}
