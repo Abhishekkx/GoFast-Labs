@@ -5,107 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GoFast Labs — Digital Product Studio & Full-Service Agency</title>
   <meta name="description" content="GoFast Labs is a high-velocity product studio and digital agency engineering sovereign interfaces, resilient web apps, mobile products, and AI automations." />
-
-  <!-- Preconnect & Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#F5F3EF" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GoFast Labs" />
+  <meta property="og:title" content="GoFast Labs — Digital Product Studio & Full-Service Agency" />
+  <meta property="og:description" content="GoFast Labs is a high-velocity product studio and digital agency engineering sovereign interfaces, resilient web apps, mobile products, and AI automations." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/satoshi-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin />
+<!-- @include head-boot -->
 </head>
 <body class="bg-bg text-ink font-body antialiased selection:bg-accent selection:text-ink">
 
-  <!-- Top Scroll Progress Line -->
-  <div id="scroll-progress" aria-hidden="true"></div>
+<!-- @include chrome -->
 
-  <!-- Custom Cursor Elements (Desktop only) -->
-  <div id="cursor-dot" aria-hidden="true"></div>
-  <div id="cursor-ring" aria-hidden="true">
-    <span class="cursor-text">View<br/>case →</span>
-  </div>
+<!-- @include header -->
 
-  <!-- Full-Screen Preloader (Runs once per session) -->
-  <aside id="preloader" aria-label="Loading screen">
-    <div class="flex items-center justify-between text-secondary font-mono text-[11px] uppercase tracking-widest">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-        <span>GOFAST LABS // VELOCITY KERNEL</span>
-      </div>
-      <div>SYS: ACTIVE</div>
-    </div>
-    <div id="preloader-streak"></div>
-    <div class="flex items-end justify-between font-mono">
-      <div id="preloader-count" class="text-6xl md:text-8xl font-bold tracking-tighter text-ink">000</div>
-      <div class="text-[12px] uppercase tracking-wider text-secondary">BOOTING ENGINE</div>
-    </div>
-  </aside>
-
-  <!-- Full-Screen Page Transition Overlay -->
-  <div id="page-transition" aria-hidden="true">
-    <div class="flex flex-col items-center gap-3">
-      <span class="font-headline text-3xl font-bold text-surface tracking-tight">GOFAST<span class="text-accent"> // </span>LABS</span>
-      <div class="font-mono text-xs uppercase tracking-widest text-secondary">[ PREPARING RUNTIME ]</div>
-    </div>
-  </div>
-
-  <!-- Top Sticky / Dynamic Navbar -->
-  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
-    <div class="h-16 w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between">
-      <!-- Wordmark Logo -->
-      <a href="#" class="flex items-center gap-2 group" aria-label="GoFast Labs Homepage">
-        <span class="font-headline text-xl md:text-2xl tracking-tight text-ink font-bold">GOFAST<span class="text-accent">.</span>LABS</span>
-      </a>
-
-      <!-- Desktop Navigation Links with Text-Roll -->
-      <nav class="hidden lg:flex items-center gap-space-lg" aria-label="Primary Navigation">
-        <a class="nav-link-roll text-sm font-medium text-ink transition-colors" href="#services">Services</a>
-        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="#work-section">Work</a>
-        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" data-page-link href="/about">About</a>
-        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="#pricing">Pricing</a>
-        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="#contact-hub">Contact</a>
-      </nav>
-
-      <!-- Right Header Actions -->
-      <div class="flex items-center gap-3 md:gap-space-md">
-        <!-- Live Status Pill -->
-        <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-line font-mono text-[11px] uppercase tracking-wider text-secondary shadow-sm">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-          </span>
-          <span>Available for projects</span>
-        </div>
-
-        <!-- Magnetic Start a Project Button -->
-        <a class="btn-magnetic hidden sm:inline-flex items-center justify-center rounded-full bg-ink text-surface font-body text-xs md:text-sm font-medium px-5 py-2.5 hover:opacity-90 active:scale-[0.98] transition-all" href="#contact-hub">
-          Start a project →
-        </a>
-
-        <!-- Mobile Hamburger Toggle -->
-        <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu" class="lg:hidden p-2 rounded-lg border border-line bg-surface text-ink focus:outline-none">
-          <span class="material-symbols-outlined text-[24px]">menu</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Full-Screen Overlay Menu -->
-    <div id="mobile-menu" class="fixed inset-0 top-16 bg-bg z-40 flex flex-col justify-between p-8 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden">
-      <nav class="flex flex-col gap-6 pt-4 font-headline text-3xl font-bold tracking-tight">
-        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#services">01. Services</a>
-        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#work-section">02. Work</a>
-        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" data-page-link href="/about">03. About</a>
-        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#pricing">04. Pricing</a>
-        <a class="mobile-nav-link text-ink hover:text-accent transition-colors" href="#contact-hub">05. Contact</a>
-      </nav>
-      <div class="pt-6 border-t border-line space-y-4">
-        <div class="font-mono text-xs uppercase text-secondary">hello@gofastlabs.com</div>
-        <a class="w-full py-4 rounded-full bg-accent text-ink font-headline text-base font-bold text-center block" href="#contact-hub">
-          Start a project →
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Canvas Container -->
+  <div class="page-cover">
   <main class="w-full max-w-[1440px] mx-auto pt-16 min-h-screen bg-bg relative z-10">
     <div class="flex flex-col w-full text-ink">
 
@@ -115,7 +31,7 @@
         <div class="hairline-grid absolute inset-0 pointer-events-none opacity-40"></div>
 
         <!-- Top Badge Row -->
-        <div class="hero-top-badges relative z-10 flex items-center justify-between">
+        <div class="hero-top-badges relative z-10 flex items-center justify-between" data-hero-reveal>
           <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-line font-mono text-[11px] text-secondary uppercase tracking-widest shadow-sm">
             <span class="inline-block w-1.5 h-1.5 rounded-full bg-accent"></span>
             PRODUCT STUDIO · DIGITAL AGENCY
@@ -128,11 +44,11 @@
 
         <!-- Monumental Display Headline -->
         <div class="hero-headline-container relative z-10 my-space-xl">
-          <h1 class="hero-headline font-headline text-4xl sm:text-6xl md:text-7xl lg:text-[88px] xl:text-[96px] tracking-tighter text-ink font-bold max-w-5xl leading-[0.95]" aria-label="We turn ideas into products. Fast.">
-            We turn ideas into products.
-            <span class="relative inline-block mt-2 md:mt-0">
+          <h1 class="hero-headline font-headline text-4xl sm:text-6xl md:text-7xl lg:text-[88px] xl:text-[96px] tracking-tighter text-ink font-bold max-w-5xl leading-[0.95]" aria-label="We turn ideas into products. Fast." data-hero-reveal>
+            <span class="hero-headline-text" aria-hidden="true">We turn ideas into products.</span>
+            <span class="relative inline-block mt-2 md:mt-0" aria-hidden="true">
               <span class="hero-lime-badge absolute inset-0 bg-accent rounded-xl -rotate-1 shadow-sm"></span>
-              <span class="relative z-10 text-ink px-4 py-1 inline-block -rotate-1 font-bold">Fast.</span>
+              <span class="hero-fast-word relative z-10 text-ink px-4 py-1 inline-block -rotate-1 font-bold">Fast.</span>
             </span>
           </h1>
         </div>
@@ -141,20 +57,20 @@
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center my-space-md">
           <!-- Left Copy + CTA Buttons -->
           <div class="lg:col-span-5 flex flex-col gap-space-lg">
-            <p class="hero-lead-copy font-body text-lg md:text-xl text-secondary max-w-md font-normal leading-relaxed">
+            <p class="hero-lead-copy font-body text-lg md:text-xl text-secondary max-w-md font-normal leading-relaxed" data-hero-reveal>
               GoFast Labs designs, builds and scales websites, apps and brands for founders who can't afford to wait.
             </p>
             <div class="flex flex-wrap items-center gap-space-md pt-space-xs">
-              <a class="hero-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-ink text-surface font-body text-sm font-medium px-8 py-3.5 hover:opacity-90 active:scale-[0.98] transition-all shadow-md" href="#contact-hub">
+              <a class="hero-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-ink text-surface font-body text-sm font-medium px-8 py-3.5 hover:bg-ink/85 transition-colors shadow-md" href="#contact-hub" data-hero-reveal>
                 Start a project
               </a>
-              <a class="hero-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-surface border border-line text-ink font-body text-sm font-medium px-8 py-3.5 hover:bg-surface-variant transition-all" href="#work-section">
+              <a class="hero-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-surface border border-line text-ink font-body text-sm font-medium px-8 py-3.5 hover:bg-surface-variant transition-colors" href="#work-section" data-hero-reveal>
                 See our work
               </a>
             </div>
 
             <!-- Trust Meta Signals -->
-            <div class="hero-trust-signals pt-space-md flex items-center gap-space-lg">
+            <div class="hero-trust-signals pt-space-md flex items-center gap-space-lg" data-hero-reveal>
               <div class="flex -space-x-2">
                 <span class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-surface flex items-center justify-center font-mono text-[10px] font-bold text-ink">FL</span>
                 <span class="w-8 h-8 rounded-full bg-surface-variant border-2 border-surface flex items-center justify-center font-mono text-[10px] font-bold text-ink">AC</span>
@@ -168,14 +84,14 @@
 
           <!-- Right 3-Screen Overlapping Mockup Frame -->
           <div class="lg:col-span-7 relative">
-            <div class="hero-collage w-full bg-surface rounded-card border border-line p-space-md md:p-space-lg shadow-sm relative overflow-hidden">
+            <div class="hero-collage w-full bg-surface rounded-card border border-line p-space-md md:p-space-lg shadow-sm relative overflow-hidden" role="img" aria-label="Preview of three product interfaces: a web app canvas, a fintech mobile app and a fleet analytics dashboard" data-hero-reveal>
               <div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-line text-secondary font-mono text-[11px] uppercase tracking-wider">
                 <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-accent"></span> LIVE WORKSPACE PREVIEW</span>
                 <span>SYSTEM 2.4.0</span>
               </div>
               <div class="relative h-[340px] md:h-[400px] w-full flex items-center justify-center">
                 <!-- Screen 1: Web App Canvas (-3 deg) -->
-                <div class="hero-screen-1 absolute left-2 md:left-6 w-[280px] md:w-[320px] bg-surface-container rounded-xl border border-line shadow-lg p-3 -rotate-3 transition-transform hover:-translate-y-2 hover:rotate-0 duration-300">
+                <div class="hero-screen-1 absolute left-2 md:left-6 w-[280px] md:w-[320px] bg-surface-container rounded-xl border border-line shadow-lg p-3 -rotate-3">
                   <div class="h-4 flex items-center gap-1.5 mb-2 px-1">
                     <span class="w-2 h-2 rounded-full bg-error"></span>
                     <span class="w-2 h-2 rounded-full bg-surface-variant"></span>
@@ -202,17 +118,17 @@
                 </div>
 
                 <!-- Screen 2: Dark Mode Mobile Mockup (0 deg center) -->
-                <div class="hero-screen-2 absolute z-20 w-[190px] md:w-[210px] bg-ink text-surface rounded-[22px] border border-muted/30 shadow-2xl p-3.5 transition-transform hover:scale-105 duration-300">
-                  <div class="flex justify-between items-center text-[9px] font-mono text-secondary mb-3 px-1">
+                <div class="hero-screen-2 absolute z-20 w-[190px] md:w-[210px] bg-ink text-surface rounded-[22px] border border-muted/30 shadow-2xl p-3.5">
+                  <div class="flex justify-between items-center text-[9px] font-mono text-neutral-400 mb-3 px-1">
                     <span>9:41</span>
                     <div class="w-8 h-2 bg-neutral-800 rounded-full"></div>
-                    <span class="material-symbols-outlined text-[12px] text-accent">battery_full</span>
+                    <svg class="w-[12px] h-[12px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M320-80q-17 0-28.5-11.5T280-120v-640q0-17 11.5-28.5T320-800h80v-80h160v80h80q17 0 28.5 11.5T680-760v640q0 17-11.5 28.5T640-80H320Z"/></svg>
                   </div>
                   <div class="bg-neutral-900 p-2.5 rounded-xl border border-neutral-800 space-y-2 mb-2">
                     <div class="text-[10px] text-surface-dim uppercase font-mono">Total Balance</div>
                     <div class="font-headline text-[18px] text-surface font-bold">$142,850.00</div>
                     <div class="inline-flex items-center gap-1 text-[10px] text-accent font-mono">
-                      <span class="material-symbols-outlined text-[12px]">trending_up</span> +34.2% this sprint
+                      <svg class="w-[12px] h-[12px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z"/></svg> +34.2% this sprint
                     </div>
                   </div>
                   <div class="space-y-1.5">
@@ -228,7 +144,7 @@
                 </div>
 
                 <!-- Screen 3: Analytics Dashboard (+3 deg right) -->
-                <div class="hero-screen-3 absolute right-2 md:right-6 w-[270px] md:w-[310px] bg-surface rounded-xl border border-line shadow-lg p-3 rotate-3 transition-transform hover:-translate-y-2 hover:rotate-0 duration-300">
+                <div class="hero-screen-3 absolute right-2 md:right-6 w-[270px] md:w-[310px] bg-surface rounded-xl border border-line shadow-lg p-3 rotate-3">
                   <div class="flex items-center justify-between mb-2">
                     <span class="font-mono text-[10px] uppercase text-secondary">Volt Telemetry</span>
                     <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
@@ -258,9 +174,9 @@
         </div>
 
         <!-- Hero Bottom Bar -->
-        <div class="relative z-10 pt-space-lg border-t border-line flex items-center justify-between font-mono text-[11px] text-secondary uppercase tracking-widest">
+        <div class="hero-bottom-bar relative z-10 pt-space-lg border-t border-line flex items-center justify-between font-mono text-[11px] text-secondary uppercase tracking-widest" data-hero-reveal>
           <div class="flex items-center gap-2">
-            <span class="animate-bounce">↓</span>
+            <span class="animate-bounce" aria-hidden="true">↓</span>
             <span>Scroll to explore</span>
           </div>
           <div>Est. 2026 — India / Worldwide</div>
@@ -269,41 +185,43 @@
 
       <!-- ================= MARQUEE STRIP ================= -->
       <section class="w-full border-y border-line bg-surface overflow-hidden py-5 select-none" aria-label="Disciplines strip">
-        <div class="marquee-track flex whitespace-nowrap gap-8 items-center w-max">
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Product Design</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Web Development</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Mobile Apps</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">GEO &amp; AI Search</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">AI Automation</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Application Security</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Graphic Design</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Growth Marketing</span>
-          <span class="text-accent text-2xl">✦</span>
-
-          <!-- Duplicate Set for Continuous Track -->
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Product Design</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Web Development</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Mobile Apps</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">GEO &amp; AI Search</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">AI Automation</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Application Security</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Graphic Design</span>
-          <span class="text-accent text-2xl">✦</span>
-          <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Growth Marketing</span>
-          <span class="text-accent text-2xl">✦</span>
+        <div class="marquee-track flex whitespace-nowrap items-center w-max">
+          <span class="marquee-set flex items-center shrink-0">
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Product Design</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Web Development</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Mobile Apps</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">GEO &amp; AI Search</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">AI Automation</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Application Security</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Graphic Design</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Growth Marketing</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+          </span>
+          <span class="marquee-set flex items-center shrink-0" aria-hidden="true">
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Product Design</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Web Development</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Mobile Apps</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">GEO &amp; AI Search</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">AI Automation</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Application Security</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tight text-ink">Graphic Design</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+            <span class="font-headline text-2xl md:text-3xl font-medium uppercase tracking-tight text-secondary">Growth Marketing</span>
+            <span class="text-accent text-2xl" aria-hidden="true">✦</span>
+          </span>
         </div>
       </section>
 
@@ -322,15 +240,15 @@
 
         <!-- Horizontal Scrollable Container (Desktop Pinning) -->
         <div class="relative w-full">
-          <div id="services-track" class="flex flex-col lg:flex-row gap-gutter transition-transform">
+          <div id="services-track" class="flex flex-col lg:flex-row gap-gutter">
             
             <!-- Card 01: Website Building -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">01</span>
                   <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
-                    <span class="material-symbols-outlined text-[20px]">terminal</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H160v400Zm140-40-56-56 103-104-104-104 57-56 160 160-160 160Zm180 0v-80h240v80H480Z"/></svg>
                   </div>
                 </div>
                 <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Website Building</h3>
@@ -346,12 +264,12 @@
             </div>
 
             <!-- Card 02: Mobile Apps -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">02</span>
                   <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
-                    <span class="material-symbols-outlined text-[20px]">smartphone</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M280-40q-33 0-56.5-23.5T200-120v-720q0-33 23.5-56.5T280-920h400q33 0 56.5 23.5T760-840v124q18 7 29 22t11 34v80q0 19-11 34t-29 22v404q0 33-23.5 56.5T680-40H280Zm0-80h400v-720H280v720Zm0 0v-720 720Zm228.5-611.5Q520-743 520-760t-11.5-28.5Q497-800 480-800t-28.5 11.5Q440-777 440-760t11.5 28.5Q463-720 480-720t28.5-11.5Z"/></svg>
                   </div>
                 </div>
                 <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Mobile Apps</h3>
@@ -367,12 +285,12 @@
             </div>
 
             <!-- Card 03: SEO -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">03</span>
                   <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
-                    <span class="material-symbols-outlined text-[20px]">trending_up</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m136-240-56-56 296-298 160 160 208-206H640v-80h240v240h-80v-104L536-320 376-480 136-240Z"/></svg>
                   </div>
                 </div>
                 <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">SEO</h3>
@@ -388,12 +306,12 @@
             </div>
 
             <!-- Card 04: GEO (Generative Engine Optimization) -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">04</span>
                   <div class="w-10 h-10 rounded-full bg-accent text-ink flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[20px]">psychology</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l52 205q5 19-7 34.5T840-360h-80v120q0 33-23.5 56.5T680-160h-80v80h-80v-160h160v-200h108l-38-155q-23-91-98-148t-172-57q-116 0-198 81t-82 197q0 60 24.5 114t69.5 96l26 24v208h-80Zm254-360Zm-54 80h80l6-50q8-3 14.5-7t11.5-9l46 20 40-68-40-30q2-8 2-16t-2-16l40-30-40-68-46 20q-5-5-11.5-9t-14.5-7l-6-50h-80l-6 50q-8 3-14.5 7t-11.5 9l-46-20-40 68 40 30q-2 8-2 16t2 16l-40 30 40 68 46-20q5 5 11.5 9t14.5 7l6 50Zm-2.5-117.5Q420-495 420-520t17.5-42.5Q455-580 480-580t42.5 17.5Q540-545 540-520t-17.5 42.5Q505-460 480-460t-42.5-17.5Z"/></svg>
                   </div>
                 </div>
                 <div class="flex items-center gap-2 mb-space-sm">
@@ -412,12 +330,12 @@
             </div>
 
             <!-- Card 05: AI Automation -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">05</span>
                   <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
-                    <span class="material-symbols-outlined text-[20px]">memory</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M360-360v-240h240v240H360Zm80-80h80v-80h-80v80Zm-80 320v-80h-80q-33 0-56.5-23.5T200-280v-80h-80v-80h80v-80h-80v-80h80v-80q0-33 23.5-56.5T280-760h80v-80h80v80h80v-80h80v80h80q33 0 56.5 23.5T760-680v80h80v80h-80v80h80v80h-80v80q0 33-23.5 56.5T680-200h-80v80h-80v-80h-80v80h-80Zm320-160v-400H280v400h400ZM480-480Z"/></svg>
                   </div>
                 </div>
                 <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">AI Automation</h3>
@@ -433,12 +351,12 @@
             </div>
 
             <!-- Card 06: Application Security -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">06</span>
                   <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
-                    <span class="material-symbols-outlined text-[20px]">shield</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z"/></svg>
                   </div>
                 </div>
                 <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Application Security</h3>
@@ -454,12 +372,12 @@
             </div>
 
             <!-- Card 07: Graphic Design -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">07</span>
                   <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
-                    <span class="material-symbols-outlined text-[20px]">palette</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 32.5-156t88-127Q256-817 330-848.5T488-880q80 0 151 27.5t124.5 76q53.5 48.5 85 115T880-518q0 115-70 176.5T640-280h-74q-9 0-12.5 5t-3.5 11q0 12 15 34.5t15 51.5q0 50-27.5 74T480-80Zm0-400Zm-177 23q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17Zm120-160q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17Zm200 0q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17Zm120 160q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17ZM480-160q9 0 14.5-5t5.5-13q0-14-15-33t-15-57q0-42 29-67t71-25h70q66 0 113-38.5T800-518q0-121-92.5-201.5T488-800q-136 0-232 93t-96 227q0 133 93.5 226.5T480-160Z"/></svg>
                   </div>
                 </div>
                 <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Graphic Design</h3>
@@ -475,12 +393,12 @@
             </div>
 
             <!-- Card 08: Marketing -->
-            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm transition-all duration-300">
+            <div class="service-card w-full lg:w-[380px] shrink-0 bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div>
                 <div class="flex items-center justify-between mb-space-lg">
                   <span class="font-mono text-sm text-secondary font-semibold">08</span>
                   <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-ink">
-                    <span class="material-symbols-outlined text-[20px]">campaign</span>
+                    <svg class="w-[20px] h-[20px] shrink-0" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M720-440v-80h160v80H720Zm48 280-128-96 48-64 128 96-48 64Zm-80-480-48-64 128-96 48 64-128 96ZM200-200v-160h-40q-33 0-56.5-23.5T80-440v-80q0-33 23.5-56.5T160-600h160l200-120v480L320-360h-40v160h-80Zm240-182v-196l-98 58H160v80h182l98 58Zm120 36v-268q27 24 43.5 58.5T620-480q0 41-16.5 75.5T560-346ZM300-480Z"/></svg>
                   </div>
                 </div>
                 <h3 class="font-headline text-2xl text-ink font-semibold mb-space-sm">Marketing</h3>
@@ -499,11 +417,11 @@
         </div>
 
         <!-- Progress Indicator Strip -->
-        <div class="flex items-center justify-between pt-space-sm border-t border-line">
+        <div class="services-progress flex items-center justify-between pt-space-sm border-t border-line">
           <div class="flex items-center gap-space-md w-full sm:w-1/3">
-            <span id="services-counter" class="font-mono text-sm text-ink font-bold">01 / 08</span>
+            <span id="services-counter" class="font-mono text-sm text-ink font-bold tabular-nums" aria-hidden="true">01 / 08</span>
             <div class="h-1 flex-1 bg-surface-variant rounded-full overflow-hidden">
-              <div id="services-progress-bar" class="h-full bg-accent w-[12.5%] rounded-full transition-all duration-150"></div>
+              <div id="services-progress-bar" class="h-full w-full bg-accent rounded-full" style="transform: scaleX(0.125)"></div>
             </div>
           </div>
           <div class="hidden sm:block font-mono text-[11px] text-secondary uppercase tracking-wider">
@@ -531,10 +449,11 @@
           <!-- Project 1: HyperFlow Studio (Large Aspect) -->
           <div class="work-card md:col-span-7 bg-surface rounded-card border border-line p-space-lg group hover:border-ink transition-all cursor-pointer" data-cursor="work">
             <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line">
-              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-51qQ4S6k9tIfMfinVgZVNcC57h_vJiOEC3fGiosSXvPIvXQRCvFRq1JGXAQXNj2NQVVSMN7vnn-Umm0Xs00LgG4DOXwQgiafDN2FSyvLpKnFCSZHbWN_Gq9laix5SqWs_wIBHR7lM52czImCf6_fRFDboihU5J6761z863TKKEmGdtqczhiuo-NuwprnGC79twSzNz2nhgUSw0TArWlJfE-18poSwA5IMladXuqFYmZGDH8RLXXu" 
-                   alt="HyperFlow Studio Canvas Workspace UI" 
-                   width="720" height="400" loading="lazy" />
+              <picture class="block w-full h-full">
+                <source type="image/avif" srcset="/images/work/hyperflow-640.avif 640w, /images/work/hyperflow-960.avif 960w, /images/work/hyperflow-1408.avif 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <source type="image/webp" srcset="/images/work/hyperflow-640.webp 640w, /images/work/hyperflow-960.webp 960w, /images/work/hyperflow-1408.webp 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <img class="work-image w-full h-full object-cover" src="/images/work/hyperflow-960.webp" alt="HyperFlow Studio Canvas Workspace UI" width="1408" height="768" loading="lazy" decoding="async" />
+              </picture>
               <div class="absolute top-4 left-4 font-mono text-[11px] bg-ink text-surface px-3 py-1 rounded-full uppercase tracking-wider">
                 CANVAS 2.0
               </div>
@@ -553,10 +472,11 @@
           <!-- Project 2: Kroma Fintech (Compact Aspect) -->
           <div class="work-card md:col-span-5 bg-surface rounded-card border border-line p-space-lg group hover:border-ink transition-all cursor-pointer" data-cursor="work">
             <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line flex items-center justify-center">
-              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPsGTTaTMQ9UIdcsc9qSaWKu9G6qToTqXbPNpTbIN6DRe4zP1vip7LP2JjZ_ondS8CWICDnhfDSXewx_vT8Rvl6X5M8Ue6Df2o5-J_Ks6XN24EOoD2FT-BFGazm3uxnN3Tmpt4b7oGgUKcPYHXHz0yIdKPY6qe4h50UannBtC7cr8j8klK1sOBQPUDtrNKXvieboXctklwlCnusLoroEY8-isp_ipDUQUqxx0tfUgYUB_HJhLxa5_7" 
-                   alt="Kroma Fintech Mobile App Screenshot" 
-                   width="500" height="400" loading="lazy" />
+              <picture class="block w-full h-full">
+                <source type="image/avif" srcset="/images/work/kroma-640.avif 640w, /images/work/kroma-960.avif 960w, /images/work/kroma-1408.avif 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <source type="image/webp" srcset="/images/work/kroma-640.webp 640w, /images/work/kroma-960.webp 960w, /images/work/kroma-1408.webp 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <img class="work-image w-full h-full object-cover" src="/images/work/kroma-960.webp" alt="Kroma Fintech Mobile App Screenshot" width="1408" height="768" loading="lazy" decoding="async" />
+              </picture>
               <div class="absolute top-4 left-4 font-mono text-[11px] bg-accent text-ink px-3 py-1 rounded-full uppercase tracking-wider font-bold">
                 SERIES A
               </div>
@@ -575,10 +495,11 @@
           <!-- Project 3: Aura Intelligence (Compact Aspect) -->
           <div class="work-card md:col-span-5 bg-surface rounded-card border border-line p-space-lg relative group hover:border-ink transition-all cursor-pointer" data-cursor="work">
             <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line">
-              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_3D6lXSpboTAJB0lXxt0i1TuLOwExSqJNBPoO00lTiGorvnPjfTdlGwyOtTG6IqbhVUOOq4TKzEEbxQgfPMvD4V7btfSj42oZnHrukV8oueC687jpJqzQ0PRqnrOZYD40vDfGv8Xba5Woix923aHigR1e83zhRo28JHyQqslXLHhKPPWwsJfpoWS6N5ACMTQtjjXpfZdRXbxx1GknHJmUwGVAx2P8HZq82-6Ldmgd0mlF3FJTZN-T" 
-                   alt="Aura Intelligence Neural AI Workstation Interface" 
-                   width="500" height="400" loading="lazy" />
+              <picture class="block w-full h-full">
+                <source type="image/avif" srcset="/images/work/aura-640.avif 640w, /images/work/aura-960.avif 960w, /images/work/aura-1408.avif 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <source type="image/webp" srcset="/images/work/aura-640.webp 640w, /images/work/aura-960.webp 960w, /images/work/aura-1408.webp 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <img class="work-image w-full h-full object-cover" src="/images/work/aura-960.webp" alt="Aura Intelligence Neural AI Workstation Interface" width="1408" height="768" loading="lazy" decoding="async" />
+              </picture>
               <div class="absolute top-4 left-4 font-mono text-[11px] bg-ink text-surface px-3 py-1 rounded-full uppercase tracking-wider">
                 AI WORKSTATION
               </div>
@@ -597,10 +518,11 @@
           <!-- Project 4: Volt Mobility (Large Aspect) -->
           <div class="work-card md:col-span-7 bg-surface rounded-card border border-line p-space-lg group hover:border-ink transition-all cursor-pointer" data-cursor="work">
             <div class="work-image-wrap relative w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden mb-space-md bg-surface-container border border-line">
-              <img class="work-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
-                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGIlM6eiPAONjeO6J9_4UqEtIvujd6bVcfzt6bUjjHC7jZABZpUI8i4GIxUWVFbbjn_YwRbJbMnm6XY0Bkwc9YHUtuWUNWvHy33rKSjxFCic5lhPR5iVeboV7923vTTWB6UX0L6N8GrnZdAC7qvchgv2dhkWYmljx2DS_xdguo28gcsouLTzaoCqsVfCxIinCzR6D6tLCTyEFyWNO9J66rtMzTgthQxtm0xTTHCvRhETLUPta2mCMd" 
-                   alt="Volt Mobility EV Fleet Telemetry Dashboard" 
-                   width="720" height="400" loading="lazy" />
+              <picture class="block w-full h-full">
+                <source type="image/avif" srcset="/images/work/volt-640.avif 640w, /images/work/volt-960.avif 960w, /images/work/volt-1408.avif 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <source type="image/webp" srcset="/images/work/volt-640.webp 640w, /images/work/volt-960.webp 960w, /images/work/volt-1408.webp 1408w" sizes="(min-width: 768px) 734px, 587px" />
+                <img class="work-image w-full h-full object-cover" src="/images/work/volt-960.webp" alt="Volt Mobility EV Fleet Telemetry Dashboard" width="1408" height="768" loading="lazy" decoding="async" />
+              </picture>
               <div class="absolute top-4 left-4 font-mono text-[11px] bg-ink text-surface px-3 py-1 rounded-full uppercase tracking-wider">
                 ENTERPRISE SCALE
               </div>
@@ -623,28 +545,31 @@
       <section id="numbers-section" class="w-full px-margin-mobile md:px-margin py-space-2xl">
         <div class="grid grid-cols-2 lg:grid-cols-4 border-y border-line bg-surface">
           <!-- Stat 1: 40+ -->
-          <div class="p-space-lg md:p-space-xl border-r border-b lg:border-b-0 border-line flex flex-col justify-between relative">
+          <div class="p-space-lg md:p-space-xl border-b lg:border-b-0 border-line flex flex-col justify-between relative">
+            <span class="number-divider" aria-hidden="true"></span>
             <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">VELOCITY</span>
             <div class="space-y-1">
-              <div id="stat-40" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <div id="stat-40" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none tabular-nums">40+</div>
               <p class="font-mono text-xs text-secondary">Products launched</p>
             </div>
           </div>
 
           <!-- Stat 2: 2-wk -->
-          <div class="p-space-lg md:p-space-xl lg:border-r border-b lg:border-b-0 border-line flex flex-col justify-between relative">
+          <div class="p-space-lg md:p-space-xl border-b lg:border-b-0 border-line flex flex-col justify-between relative">
+            <span class="number-divider hidden lg:block" aria-hidden="true"></span>
             <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">CADENCE</span>
             <div class="space-y-1">
-              <div id="stat-2wk" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <div id="stat-2wk" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none tabular-nums">2-wk</div>
               <p class="font-mono text-xs text-secondary">Design sprints</p>
             </div>
           </div>
 
           <!-- Stat 3: 12 -->
-          <div class="p-space-lg md:p-space-xl border-r border-line flex flex-col justify-between relative">
+          <div class="p-space-lg md:p-space-xl flex flex-col justify-between relative">
+            <span class="number-divider" aria-hidden="true"></span>
             <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">FOOTPRINT</span>
             <div class="space-y-1">
-              <div id="stat-12" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <div id="stat-12" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none tabular-nums">12</div>
               <p class="font-mono text-xs text-secondary">Countries served</p>
             </div>
           </div>
@@ -653,7 +578,7 @@
           <div class="p-space-lg md:p-space-xl flex flex-col justify-between relative">
             <span class="font-mono text-xs text-secondary uppercase tracking-widest mb-space-md">TRUST</span>
             <div class="space-y-1">
-              <div id="stat-98" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none">0</div>
+              <div id="stat-98" class="font-headline text-5xl md:text-6xl lg:text-[72px] font-bold text-ink tracking-tighter leading-none tabular-nums">98%</div>
               <p class="font-mono text-xs text-secondary">Client retention</p>
             </div>
           </div>
@@ -673,28 +598,22 @@
         </div>
 
         <!-- 4 Connected Process Nodes -->
-        <div class="relative w-full">
-          <!-- Desktop Connecting SVG Line -->
-          <div class="hidden lg:block absolute top-7 left-12 right-12 h-1 pointer-events-none z-0">
-            <svg class="w-full h-2 overflow-visible" preserveAspectRatio="none">
-              <line x1="0" y1="1" x2="100%" y2="1" stroke="#E4E1DB" stroke-width="2" stroke-dasharray="6 6"></line>
-              <line id="process-line-desktop" x1="0" y1="1" x2="100%" y2="1" stroke="#C6F432" stroke-width="4" stroke-linecap="round"></line>
-            </svg>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter relative z-10">
+        <div class="process-wrap relative w-full">
+          <svg class="process-track" aria-hidden="true" focusable="false"></svg>
+          <div class="process-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter pl-8 lg:pl-0">
             <!-- 01 Discover -->
             <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div class="space-y-space-md">
-                <div class="process-circle w-14 h-14 rounded-full bg-accent text-ink flex items-center justify-center font-headline font-bold text-lg shadow-sm border-2 border-surface transition-colors duration-300">
-                  01
+                <div class="process-circle relative overflow-hidden w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg shadow-sm">
+                  <span class="process-fill" aria-hidden="true"></span>
+                  <span class="relative">01</span>
                 </div>
-                <h3 class="font-headline text-2xl text-ink font-bold">Discover</h3>
-                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                <h3 class="process-text font-headline text-2xl text-ink font-bold">Discover</h3>
+                <p class="process-text font-body text-secondary text-sm md:text-base leading-relaxed">
                   Uncover leverage points, map technical constraints, and define core product scope in high-speed alignment sessions.
                 </p>
               </div>
-              <div class="mt-space-lg font-mono text-[11px] text-ink uppercase font-semibold">
+              <div class="process-text mt-space-lg font-mono text-[11px] text-ink uppercase font-semibold">
                 Sprint Days 1–3
               </div>
             </div>
@@ -702,15 +621,16 @@
             <!-- 02 Design -->
             <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div class="space-y-space-md">
-                <div class="process-circle w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg shadow-sm transition-colors duration-300">
-                  02
+                <div class="process-circle relative overflow-hidden w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg shadow-sm">
+                  <span class="process-fill" aria-hidden="true"></span>
+                  <span class="relative">02</span>
                 </div>
-                <h3 class="font-headline text-2xl text-ink font-bold">Design</h3>
-                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                <h3 class="process-text font-headline text-2xl text-ink font-bold">Design</h3>
+                <p class="process-text font-body text-secondary text-sm md:text-base leading-relaxed">
                   High-fidelity interactive prototypes in rapid 48-hour feedback cycles. Test real ergonomics before writing single line.
                 </p>
               </div>
-              <div class="mt-space-lg font-mono text-[11px] text-ink uppercase font-semibold">
+              <div class="process-text mt-space-lg font-mono text-[11px] text-ink uppercase font-semibold">
                 Sprint Days 4–8
               </div>
             </div>
@@ -718,15 +638,16 @@
             <!-- 03 Build -->
             <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div class="space-y-space-md">
-                <div class="process-circle w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg transition-colors duration-300">
-                  03
+                <div class="process-circle relative overflow-hidden w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg shadow-sm">
+                  <span class="process-fill" aria-hidden="true"></span>
+                  <span class="relative">03</span>
                 </div>
-                <h3 class="font-headline text-2xl text-ink font-bold">Build</h3>
-                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                <h3 class="process-text font-headline text-2xl text-ink font-bold">Build</h3>
+                <p class="process-text font-body text-secondary text-sm md:text-base leading-relaxed">
                   Production-ready code built with modern frameworks and strict performance budgets. Instant staging deployments.
                 </p>
               </div>
-              <div class="mt-space-lg font-mono text-[11px] text-secondary uppercase">
+              <div class="process-text mt-space-lg font-mono text-[11px] text-secondary uppercase">
                 Sprint Days 9–14
               </div>
             </div>
@@ -734,15 +655,16 @@
             <!-- 04 Launch & Grow -->
             <div class="process-card bg-surface rounded-card border border-line p-space-lg flex flex-col justify-between shadow-sm">
               <div class="space-y-space-md">
-                <div class="process-circle w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg transition-colors duration-300">
-                  04
+                <div class="process-circle relative overflow-hidden w-14 h-14 rounded-full bg-surface-container text-ink border border-line flex items-center justify-center font-headline font-bold text-lg shadow-sm">
+                  <span class="process-fill" aria-hidden="true"></span>
+                  <span class="relative">04</span>
                 </div>
-                <h3 class="font-headline text-2xl text-ink font-bold">Launch &amp; Grow</h3>
-                <p class="font-body text-secondary text-sm md:text-base leading-relaxed">
+                <h3 class="process-text font-headline text-2xl text-ink font-bold">Launch &amp; Grow</h3>
+                <p class="process-text font-body text-secondary text-sm md:text-base leading-relaxed">
                   Frictionless deployment, instrumentation, DNS cutover, and ongoing telemetry growth loops to optimize conversions.
                 </p>
               </div>
-              <div class="mt-space-lg font-mono text-[11px] text-secondary uppercase">
+              <div class="process-text mt-space-lg font-mono text-[11px] text-secondary uppercase">
                 Continuous Iteration
               </div>
             </div>
@@ -752,7 +674,7 @@
 
       <!-- ================= 04 — PRICING SECTION ================= -->
       <section id="pricing" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-2xl">
-        <div class="text-center max-w-xl mx-auto space-y-space-xs">
+        <div class="text-center max-w-xl mx-auto space-y-space-sm">
           <div class="font-mono text-xs text-secondary uppercase tracking-widest">04 — PRICING</div>
           <h2 class="font-headline text-3xl md:text-5xl lg:text-6xl text-ink font-bold tracking-tight">Simple plans. No surprises.</h2>
           <p class="font-body text-base text-secondary">Predictable pricing built for founder clarity. Choose fixed velocity or full squad retainers.</p>
@@ -760,14 +682,14 @@
 
         <!-- Pricing Switcher Pill -->
         <div class="flex justify-center">
-          <div id="pricing-toggle" class="relative inline-flex p-1 rounded-full bg-surface-container border border-line">
+          <div id="pricing-toggle" class="relative inline-flex p-1 rounded-full bg-surface-container border border-line" role="group" aria-label="Billing period">
             <!-- Sliding background pill indicator -->
-            <div id="pricing-toggle-pill" class="absolute top-1 bottom-1 left-1 rounded-full bg-ink shadow-sm pointer-events-none" style="width: 140px;"></div>
+            <div id="pricing-toggle-pill" class="absolute top-1 bottom-1 left-1 rounded-full bg-ink shadow-sm pointer-events-none" aria-hidden="true"></div>
             
-            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-semibold text-surface is-active transition-colors" data-plan="project" type="button">
+            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-semibold text-surface is-active transition-colors" data-plan="project" type="button" aria-pressed="true">
               Project-based
             </button>
-            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-medium text-secondary hover:text-ink transition-colors" data-plan="monthly" type="button">
+            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-medium text-secondary hover:text-ink transition-colors" data-plan="monthly" type="button" aria-pressed="false">
               Monthly subscription
             </button>
           </div>
@@ -784,29 +706,29 @@
               <p class="font-body text-secondary text-sm mt-1 mb-6">Fixed-scope website or MVP product experience.</p>
               
               <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
-                <span id="launch-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-ink">$2,499</span>
+                <span id="launch-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-ink tabular-nums">$2,499</span>
                 <span id="launch-cadence" class="font-mono text-xs text-secondary uppercase">/ fixed</span>
               </div>
 
               <div class="space-y-3.5 mb-8">
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>1–2 weeks turnaround</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>Full responsive design system</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>CMS or modern full-stack code</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>SEO &amp; analytics instrumentation</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>30 days post-launch support</span>
                 </div>
               </div>
@@ -818,7 +740,7 @@
           </div>
 
           <!-- Plan 2: Scale (Highlighted Center Card with Border Beam) -->
-          <div class="pricing-card border-beam-card bg-ink text-surface rounded-card p-space-xl flex flex-col justify-between relative shadow-2xl transform lg:-translate-y-2">
+          <div class="pricing-card is-featured border-beam-card bg-ink text-surface rounded-card p-space-xl flex flex-col justify-between relative shadow-2xl">
             <!-- Most Popular Pill -->
             <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink px-4 py-1 rounded-full font-mono text-[11px] uppercase tracking-wider font-bold shadow-md z-20">
               Most popular
@@ -830,35 +752,35 @@
               <p class="font-body text-surface-dim text-sm mt-1 mb-6">Ongoing design &amp; dev subscription. Pause or cancel anytime.</p>
               
               <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
-                <span id="scale-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-surface">$3,999</span>
+                <span id="scale-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-surface tabular-nums">$3,999</span>
                 <span id="scale-cadence" class="font-mono text-xs text-surface-dim uppercase">/ month</span>
               </div>
 
               <div class="space-y-3.5 mb-8">
                 <div class="flex items-center gap-3 text-sm text-surface">
-                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
                   <span>Continuous feature delivery</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-surface">
-                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
                   <span>48h turnaround per request</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-surface">
-                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
                   <span>Unlimited design &amp; dev backlog</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-surface">
-                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
                   <span>Direct Slack channel with founders</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-surface">
-                  <span class="material-symbols-outlined text-[18px] text-accent" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
                   <span>Senior staff engineers only</span>
                 </div>
               </div>
             </div>
 
-            <a class="btn-magnetic w-full py-3.5 rounded-full bg-accent text-ink font-body text-sm font-bold text-center hover:opacity-90 active:scale-[0.98] transition-all shadow-md z-20" href="#contact-hub">
+            <a class="btn-magnetic w-full py-3.5 rounded-full bg-accent text-ink font-body text-sm font-bold text-center hover:bg-accent/90 transition-colors shadow-md z-20" href="#contact-hub">
               Start Scale Subscription
             </a>
           </div>
@@ -877,23 +799,23 @@
 
               <div class="space-y-3.5 mb-8">
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>Embedded full-stack squad</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>Custom architecture &amp; LLM agents</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>Weekly synchronized sprint roadmaps</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>Enterprise SLA with guaranteed uptime</span>
                 </div>
                 <div class="flex items-center gap-3 text-sm text-ink">
-                  <span class="material-symbols-outlined text-[18px] text-ink">check_circle</span>
+                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
                   <span>SOC2 &amp; security posture audits</span>
                 </div>
               </div>
@@ -909,101 +831,9 @@
 
     </div>
   </main>
+  </div>
 
-  <!-- ================= FINAL CTA & INVERTED FOOTER (Under-Page Reveal) ================= -->
-  <footer id="contact-hub" class="w-full bg-ink text-surface rounded-t-[32px] overflow-hidden relative z-20">
-    <!-- Huge Climax Headline Row -->
-    <div class="px-margin-mobile md:px-margin pt-space-3xl pb-space-2xl border-b border-muted/30 relative">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-xl">
-        <h2 class="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-[104px] xl:text-[116px] tracking-tighter font-bold uppercase text-surface leading-[0.9]" aria-label="Let's go fast.">
-          <span class="inline-block overflow-hidden"><span class="climax-char inline-block">L</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">E</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">T</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">'</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">S</span></span>
-          <span class="inline-block w-4"></span>
-          <span class="inline-block overflow-hidden"><span class="climax-char inline-block">G</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">O</span></span>
-          <span class="inline-block w-4"></span>
-          <span class="inline-block overflow-hidden"><span class="climax-char inline-block">F</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">A</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">S</span></span><span class="inline-block overflow-hidden"><span class="climax-char inline-block">T</span></span><span class="climax-char inline-block text-accent">.</span>
-        </h2>
-        
-        <a class="footer-cta-btn btn-magnetic inline-flex items-center justify-center rounded-full bg-accent text-ink font-headline text-lg md:text-xl font-bold px-10 py-6 hover:scale-105 active:scale-95 transition-all shadow-xl group self-start lg:self-auto" href="mailto:hello@gofastlabs.com">
-          <span>Start a project</span>
-          <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Studio Details and Navigation Hub -->
-    <div class="px-margin-mobile md:px-margin py-space-2xl grid grid-cols-1 md:grid-cols-12 gap-gutter">
-      <!-- Col 1: Wordmark & Direct line -->
-      <div class="footer-col md:col-span-5 flex flex-col justify-between space-y-space-md">
-        <div>
-          <div class="font-headline text-2xl font-bold tracking-tight text-surface">
-            GOFAST<span class="text-accent"> // </span>LABS
-          </div>
-          <p class="font-body text-sm md:text-base text-surface-dim mt-2 max-w-sm leading-relaxed">
-            High-precision digital product studio engineering sovereign interfaces and hyper-scalable software systems.
-          </p>
-        </div>
-        <div>
-          <span class="font-mono text-xs text-surface-dim uppercase tracking-wider block mb-1">Direct Line</span>
-          <a class="font-headline text-xl md:text-2xl text-accent hover:underline font-semibold" href="mailto:hello@gofastlabs.com">
-            hello@gofastlabs.com
-          </a>
-        </div>
-      </div>
-
-      <!-- Col 2: Navigation Columns -->
-      <div class="footer-col md:col-span-4 grid grid-cols-2 gap-space-md">
-        <div>
-          <span class="font-mono text-xs text-surface-dim uppercase tracking-widest block mb-4">Navigation</span>
-          <ul class="space-y-2.5 font-body text-sm text-surface-dim">
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#services">Services</a></li>
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#work-section">Work</a></li>
-            <li><a class="footer-link-roll hover:text-accent transition-colors" data-page-link href="/about">About</a></li>
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#pricing">Pricing</a></li>
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="#contact-hub">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <span class="font-mono text-xs text-surface-dim uppercase tracking-widest block mb-4">Connect</span>
-          <ul class="space-y-2.5 font-body text-sm text-surface-dim">
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://x.com" target="_blank" rel="noopener">X (Twitter)</a></li>
-            <li><a class="footer-link-roll hover:text-accent transition-colors" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Col 3: Terminal Status Box -->
-      <div class="footer-col md:col-span-3 bg-neutral-900 rounded-xl p-space-md border border-neutral-800 flex flex-col justify-between">
-        <div class="space-y-2">
-          <div class="flex items-center justify-between text-surface-dim font-mono text-[11px]">
-            <span>[ SYSTEM CORE ]</span>
-            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-          </div>
-          <div class="font-mono text-sm text-surface font-semibold">
-            Q2 Availability: 2 Open Slots
-          </div>
-          <p class="font-body text-xs text-surface-dim leading-snug">
-            Currently accepting venture-backed products and accelerated brand overhauls.
-          </p>
-        </div>
-        <div class="pt-3 border-t border-neutral-800 font-mono text-[11px] text-accent">
-          ping: 14ms (EDGE/GLOBAL)
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Mono Row -->
-    <div class="px-margin-mobile md:px-margin py-space-md border-t border-muted/20 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-surface-dim">
-      <div>© 2026 GOFAST LABS INC. ALL RIGHTS RESERVED.</div>
-      <div class="text-secondary font-semibold">BUILT FAST. BUILT RIGHT.</div>
-      <div class="flex gap-4">
-        <a class="hover:text-surface transition-colors" href="#">PROTOCOL</a>
-        <span>·</span>
-        <a class="hover:text-surface transition-colors" href="#">SECURITY</a>
-      </div>
-    </div>
-  </footer>
+<!-- @include footer -->
 
   <!-- Main JavaScript Module -->
   <script type="module" src="/src/js/main.js"></script>

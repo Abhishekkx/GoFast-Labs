@@ -1,145 +1,77 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { splitTextIntoWords } from '../core/splitText';
+import { gsap, SplitText, MEDIA, prefersReducedMotion } from '../core/motion';
 
-gsap.registerPlugin(ScrollTrigger);
+const PARALLAX = [-35, -65, -45];
 
-export function initHero() {
-  const headlineEl = document.querySelector('.hero-headline');
-  const limeBadge = document.querySelector('.hero-lime-badge');
-  const leadCopy = document.querySelector('.hero-lead-copy');
-  const ctaButtons = document.querySelectorAll('.hero-cta-btn');
-  const trustSignals = document.querySelector('.hero-trust-signals');
-  const topBadges = document.querySelector('.hero-top-badges');
-  const collage = document.querySelector('.hero-collage');
-  const screen1 = document.querySelector('.hero-screen-1');
-  const screen2 = document.querySelector('.hero-screen-2');
-  const screen3 = document.querySelector('.hero-screen-3');
+// SplitText measures lines, so wait for the display font (capped so a slow font never blocks).
+const fontsReady = () =>
+  Promise.race([document.fonts?.ready ?? Promise.resolve(), new Promise((r) => setTimeout(r, 1200))]);
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+export async function initHero() {
+  const hero = document.getElementById('hero-section');
+  if (!hero) return;
 
-  // Split headline text into accessible words
-  const words = headlineEl ? splitTextIntoWords(headlineEl) : [];
+  const q = (selector) => hero.querySelector(selector);
+  const headline = q('.hero-headline');
+  const limeBadge = q('.hero-lime-badge');
+  const collage = q('.hero-collage');
+  const screens = [q('.hero-screen-1'), q('.hero-screen-2'), q('.hero-screen-3')].filter(Boolean);
+  const supporting = [q('.hero-lead-copy'), ...hero.querySelectorAll('.hero-cta-btn'), q('.hero-trust-signals'), q('.hero-bottom-bar')].filter(Boolean);
 
-  if (limeBadge) {
-    gsap.set(limeBadge, { scaleX: 0, transformOrigin: 'left center' });
+  if (prefersReducedMotion()) {
+    document.documentElement.classList.add('motion-ready');
+    gsap.from(hero.querySelectorAll('[data-hero-reveal]'), { opacity: 0, duration: 0.6, stagger: 0.08, ease: 'power1.out' });
+    return;
   }
 
-  const enterTl = gsap.timeline({ delay: 0.1 });
+  await fontsReady();
 
-  if (topBadges) {
-    enterTl.fromTo(topBadges, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' });
-  }
+  // Split the whole headline, "Fast." included, so the masked lines wrap exactly like the
+  // live text and reverting afterwards causes no layout shift. The h1 keeps its aria-label.
+  const split = SplitText.create(headline, { type: 'lines,words', mask: 'lines', aria: 'none' });
 
-  if (words.length > 0 && !prefersReducedMotion) {
-    enterTl.fromTo(
-      words,
+  const intro = gsap.timeline({ delay: 0.05 });
+  intro
+    .set(headline, { opacity: 1 })
+    .fromTo(q('.hero-top-badges'), { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' })
+    .fromTo(
+      split.words,
       { yPercent: 110 },
       {
         yPercent: 0,
-        stagger: 0.05,
+        stagger: 0.06,
         duration: 1.1,
         ease: 'expo.out',
+        // Masks are only needed for the entrance; reverting restores natural wrapping on resize.
+        onComplete: () => split.revert(),
       },
       '-=0.3'
-    );
-  }
-
-  if (limeBadge && !prefersReducedMotion) {
-    enterTl.to(
-      limeBadge,
-      {
-        scaleX: 1,
-        duration: 0.7,
-        ease: 'expo.out',
-      },
-      '-=0.4'
-    );
-  }
-
-  if (leadCopy) {
-    enterTl.fromTo(leadCopy, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' }, '-=0.5');
-  }
-
-  if (ctaButtons.length > 0) {
-    enterTl.fromTo(
-      ctaButtons,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: 'expo.out' },
-      '-=0.6'
-    );
-  }
-
-  if (trustSignals) {
-    enterTl.fromTo(trustSignals, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }, '-=0.5');
-  }
-
-  if (collage && !prefersReducedMotion) {
-    enterTl.fromTo(
+    )
+    .fromTo(limeBadge, { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left center', duration: 0.7, ease: 'expo.out' }, '-=0.45')
+    .fromTo(supporting, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.8, ease: 'expo.out' }, '-=0.55')
+    .fromTo(
       collage,
-      { opacity: 0, scale: 0.95, y: 20 },
-      { opacity: 1, scale: 1, y: 0, duration: 1.0, ease: 'expo.out' },
-      '-=0.8'
+      { opacity: 0, scale: 0.94, rotation: -2.5, y: 30 },
+      { opacity: 1, scale: 1, rotation: 0, y: 0, duration: 1.2, ease: 'expo.out' },
+      '-=1.1'
     );
-  }
 
-  // Parallax on scroll for the 3 collage screens
-  if (!prefersReducedMotion && collage) {
-    const heroSection = document.querySelector('#hero-section');
-    if (heroSection) {
-      if (screen1) {
-        gsap.to(screen1, {
-          y: -35,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: heroSection,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
+  // Start states are applied; the CSS pre-hide can step aside without a flash.
+  document.documentElement.classList.add('motion-ready');
 
-      if (screen2) {
-        gsap.to(screen2, {
-          y: -65,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: heroSection,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
+  const mm = gsap.matchMedia();
+  mm.add({ isDesktop: MEDIA.desktop, isMobile: MEDIA.mobile, motion: MEDIA.motion }, ({ conditions }) => {
+    const strength = conditions.isDesktop ? 1 : conditions.isMobile ? 0.35 : 0.6;
+    const scrub = { trigger: hero, start: 'top top', end: 'bottom top', scrub: true };
 
-      if (screen3) {
-        gsap.to(screen3, {
-          y: -45,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: heroSection,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
+    screens.forEach((screen, i) => {
+      gsap.to(screen, { y: PARALLAX[i] * strength, ease: 'none', scrollTrigger: { ...scrub } });
+    });
 
-      // Headline subtle drift and fade as user scrolls away
-      if (headlineEl) {
-        gsap.to(headlineEl.closest('.hero-headline-container') || headlineEl, {
-          y: -60,
-          opacity: 0.2,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: heroSection,
-            start: 'top top',
-            end: '70% top',
-            scrub: true,
-          },
-        });
-      }
-    }
-  }
+    gsap.to(q('.hero-headline-container'), {
+      y: -60 * strength,
+      opacity: 0.35,
+      ease: 'none',
+      scrollTrigger: { ...scrub, end: '70% top' },
+    });
+  });
 }

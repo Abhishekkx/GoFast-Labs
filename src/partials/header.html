@@ -1,0 +1,50 @@
+  <header class="site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="h-16 w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between">
+      <a href="/" data-page-link class="flex items-center gap-2 group" aria-label="GoFast Labs home">
+        <span class="font-headline text-xl md:text-2xl tracking-tight text-ink font-bold">GOFAST<span class="text-accent">.</span>LABS</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-space-lg" aria-label="Primary">
+        <a class="nav-link-roll text-sm font-medium text-ink transition-colors" href="/#services">Services</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="/#work-section">Work</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" data-page-link href="/about">About</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="/#pricing">Pricing</a>
+        <a class="nav-link-roll text-sm font-medium text-secondary hover:text-ink transition-colors" href="/#contact-hub">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3 md:gap-space-md">
+        <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-line font-mono text-[11px] uppercase tracking-wider text-secondary shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+          </span>
+          <span>Available for projects</span>
+        </div>
+
+        <a class="btn-magnetic hidden sm:inline-flex items-center justify-center rounded-full bg-ink text-surface font-body text-xs md:text-sm font-medium px-5 py-2.5 hover:opacity-90 active:scale-[0.98] transition-opacity" href="/#contact-hub">
+          Start a project →
+        </a>
+
+        <button id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu" class="lg:hidden p-2 rounded-lg border border-line bg-surface text-ink">
+          <svg class="icon-menu w-6 h-6" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+          <svg class="icon-close w-6 h-6" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" class="fixed inset-x-0 bottom-0 top-16 bg-bg z-40 flex flex-col justify-between p-8 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden" inert>
+    <nav class="flex flex-col gap-6 pt-4 font-headline text-3xl font-bold tracking-tight" aria-label="Mobile">
+      <a class="mobile-nav-link text-ink decoration-accent decoration-[3px] underline-offset-8 hover:underline focus-visible:underline" href="/#services">01. Services</a>
+      <a class="mobile-nav-link text-ink decoration-accent decoration-[3px] underline-offset-8 hover:underline focus-visible:underline" href="/#work-section">02. Work</a>
+      <a class="mobile-nav-link text-ink decoration-accent decoration-[3px] underline-offset-8 hover:underline focus-visible:underline" data-page-link href="/about">03. About</a>
+      <a class="mobile-nav-link text-ink decoration-accent decoration-[3px] underline-offset-8 hover:underline focus-visible:underline" href="/#pricing">04. Pricing</a>
+      <a class="mobile-nav-link text-ink decoration-accent decoration-[3px] underline-offset-8 hover:underline focus-visible:underline" href="/#contact-hub">05. Contact</a>
+    </nav>
+    <div class="pt-6 border-t border-line space-y-4">
+      <div class="font-mono text-xs uppercase text-secondary">hello@gofastlabs.com</div>
+      <a class="mobile-nav-link w-full py-4 rounded-full bg-accent text-ink font-headline text-base font-bold text-center block" href="/#contact-hub">
+        Start a project →
+      </a>
+    </div>
+  </div>

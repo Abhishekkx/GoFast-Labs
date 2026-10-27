@@ -4,12 +4,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base Reset & Typography */
+/* Self-hosted fonts */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+/* Satoshi ships no 600, so the bold file serves semibold too instead of a faux weight. */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi-700.woff2') format('woff2');
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/geist-mono-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     background-color: var(--bg);
     color: var(--ink);
-    scroll-behavior: auto; /* Handled by Lenis */
+    scroll-behavior: auto; /* Lenis owns smooth scrolling */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -18,12 +48,11 @@
   body {
     background-color: var(--bg);
     color: var(--ink);
-    overflow-x: hidden;
+    overflow-x: clip;
     margin: 0;
     padding: 0;
   }
 
-  /* Lenis smooth scrolling rules */
   html.lenis, html.lenis body {
     height: auto;
   }
@@ -44,38 +73,55 @@
     pointer-events: none;
   }
 
-  /* Selection style */
   ::selection {
     background-color: var(--accent);
-    color: #0E0E0E;
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .site-footer :focus-visible,
+  #page-transition :focus-visible {
+    outline-color: var(--accent);
   }
 }
 
-/* Scroll progress bar at top */
+/* Scroll progress bar */
 #scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   height: 2px;
-  width: 0%;
   background-color: var(--accent);
-  z-index: 100;
+  z-index: var(--z-progress);
   pointer-events: none;
+  transform: scaleX(0);
   transform-origin: left center;
 }
 
-/* Custom Cursor (desktop fine pointer only) */
-@media (pointer: fine) {
-  body.has-custom-cursor {
-    cursor: none;
-  }
+/* Custom cursor: fine pointer only; GSAP owns its transform */
+#cursor-dot, #cursor-ring {
+  display: none;
+}
 
+@media (pointer: fine) {
+  body.has-custom-cursor,
   body.has-custom-cursor a,
   body.has-custom-cursor button,
   body.has-custom-cursor input,
   body.has-custom-cursor select,
   body.has-custom-cursor [role="button"] {
     cursor: none;
+  }
+
+  body.has-custom-cursor #cursor-dot,
+  body.has-custom-cursor #cursor-ring {
+    display: flex;
   }
 
   #cursor-dot {
@@ -87,9 +133,7 @@
     background-color: var(--ink);
     border-radius: 9999px;
     pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.2s ease, transform 0.1s ease;
+    z-index: calc(var(--z-cursor) + 1);
   }
 
   #cursor-ring {
@@ -98,25 +142,23 @@
     left: 0;
     width: 36px;
     height: 36px;
-    border: 1px solid rgba(14, 14, 14, 0.4);
+    border: 1px solid rgb(var(--ink-rgb) / 0.4);
     border-radius: 9999px;
     pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    display: flex;
+    z-index: var(--z-cursor);
     align-items: center;
     justify-content: center;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    overflow: hidden;
+    transition: width 0.3s var(--ease-reveal),
+                height 0.3s var(--ease-reveal),
                 border-color 0.3s ease,
                 background-color 0.3s ease;
-    overflow: hidden;
   }
 
   #cursor-ring.cursor-hover {
     width: 56px;
     height: 56px;
-    background-color: rgba(198, 244, 50, 0.18);
+    background-color: rgb(var(--accent-rgb) / 0.18);
     border-color: var(--ink);
   }
 
@@ -125,15 +167,15 @@
     height: 96px;
     background-color: var(--accent);
     border-color: var(--accent);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.2);
   }
 
   #cursor-ring .cursor-text {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: #0E0E0E;
+    color: var(--ink);
     text-transform: uppercase;
     text-align: center;
     line-height: 1.1;
@@ -148,13 +190,7 @@
   }
 }
 
-@media (pointer: coarse) {
-  #cursor-dot, #cursor-ring {
-    display: none !important;
-  }
-}
-
-/* Nav Text Roll Hover Effect */
+/* Text roll hover (nav + footer links) */
 .text-roll {
   display: inline-block;
   overflow: hidden;
@@ -166,11 +202,11 @@
 
 .text-roll-inner {
   display: block;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--dur-fast) var(--ease-reveal);
 }
 
-.text-roll:hover .text-roll-inner,
-a:hover .text-roll .text-roll-inner {
+a:hover .text-roll .text-roll-inner,
+a:focus-visible .text-roll .text-roll-inner {
   transform: translateY(-50%);
 }
 
@@ -181,15 +217,33 @@ a:hover .text-roll .text-roll-inner {
   white-space: nowrap;
 }
 
-/* Hairline Grid Overlay */
+/* Hairline grid */
 .hairline-grid {
-  background-image: 
-    linear-gradient(to right, #E4E1DB 1px, transparent 1px),
-    linear-gradient(to bottom, #E4E1DB 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
   background-size: 4rem 4rem;
 }
 
-/* Animated Conic Border Beam for Scale Card */
+/* Marquee: per-item spacing keeps both halves identical so -50% loops seamlessly */
+.marquee-set > * {
+  margin-right: 2rem;
+}
+
+/* Services */
+.service-card {
+  transition: border-color 0.3s ease;
+}
+
+.service-card.is-focal {
+  border-color: var(--ink);
+}
+
+#services-progress-bar {
+  transform-origin: left center;
+}
+
+/* Pricing: animated conic border beam on the featured card */
 @property --beam-angle {
   syntax: '<angle>';
   inherits: false;
@@ -198,7 +252,7 @@ a:hover .text-roll .text-roll-inner {
 
 .border-beam-card {
   position: relative;
-  border-radius: 20px;
+  border-radius: var(--radius-card);
   background-clip: padding-box;
 }
 
@@ -206,13 +260,13 @@ a:hover .text-roll .text-roll-inner {
   content: '';
   position: absolute;
   inset: -2px;
-  border-radius: 22px;
+  border-radius: calc(var(--radius-card) + 2px);
   padding: 2px;
   background: conic-gradient(
     from var(--beam-angle),
     transparent 0%,
     transparent 50%,
-    #C6F432 80%,
+    var(--accent) 80%,
     transparent 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -229,54 +283,131 @@ a:hover .text-roll .text-roll-inner {
   }
 }
 
-/* Split Text Reveal Mask */
-.split-line-mask {
-  overflow: hidden;
-  display: block;
+@media (min-width: 1024px) {
+  .pricing-card.is-featured {
+    transform: translateY(-8px);
+  }
 }
 
-.split-word-mask {
+.pricing-card.is-settled {
+  transition: transform 0.5s var(--ease-reveal);
+}
+
+.pricing-card.is-settled:hover {
+  transform: translateY(-6px);
+}
+
+@media (min-width: 1024px) {
+  .pricing-card.is-featured.is-settled:hover {
+    transform: translateY(-14px);
+  }
+}
+
+/* Rest state before JS sizes it: covers the first (default) option */
+#pricing-toggle-pill {
+  width: 46%;
+}
+
+/* Price digit roller */
+.roll-char {
   display: inline-block;
+  position: relative;
   overflow: hidden;
-  vertical-align: top;
+  vertical-align: bottom;
 }
 
-.split-word {
+.roll-char > span {
   display: inline-block;
-  transform: translateY(110%);
-  will-change: transform;
 }
 
-/* Preloader Layer */
+.roll-char > span + span {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Process timeline */
+.process-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--accent);
+}
+
+.process-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Numbers */
+.number-divider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--line);
+  transform-origin: top center;
+}
+
+/* Footer reveal: the page covers the footer, which is uncovered as the page scrolls away.
+   Only enabled (by JS) when the footer fits in the viewport, so tall mobile footers stay readable. */
+.page-cover {
+  position: relative;
+  z-index: var(--z-cover);
+  background-color: var(--bg);
+}
+
+.site-footer {
+  position: relative;
+  z-index: 0;
+}
+
+.footer-reveal .site-footer {
+  position: sticky;
+  bottom: 0;
+}
+
+/* Preloader */
 #preloader {
   position: fixed;
   inset: 0;
   background-color: var(--bg);
-  z-index: 10000;
+  z-index: var(--z-preloader);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 2.5rem;
-  pointer-events: auto;
+}
+
+.preloader-done #preloader {
+  display: none;
 }
 
 #preloader-streak {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 0%;
+  width: 100%;
   height: 3px;
+  margin-top: -1.5px;
   background-color: var(--accent);
-  box-shadow: 0 0 16px rgba(198, 244, 50, 0.8);
-  transform: translateY(-50%);
+  box-shadow: 0 0 16px rgb(var(--accent-rgb) / 0.8);
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
-/* Page Transition Wipe Panel */
+/* Page transition panel */
 #page-transition {
   position: fixed;
   inset: 0;
-  background-color: #0E0E0E;
-  z-index: 99999;
+  background-color: var(--ink);
+  z-index: var(--z-transition);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -284,25 +415,53 @@ a:hover .text-roll .text-roll-inner {
   pointer-events: none;
 }
 
+.is-arriving #page-transition {
+  transform: translateY(0);
+}
+
 #page-transition.is-active {
   pointer-events: auto;
 }
 
-/* Reduced Motion Override */
+/* Hide hero elements until JS has set their start states, so there is no flash on
+   repeat visits. The 4s motion-fallback class reveals everything if JS never runs. */
+.motion-ok:not(.motion-ready):not(.motion-fallback) [data-hero-reveal] {
+  opacity: 0;
+}
+
+/* Mobile menu toggle icon swap */
+#mobile-menu-toggle[aria-expanded="true"] .icon-menu,
+#mobile-menu-toggle[aria-expanded="false"] .icon-close {
+  display: none;
+}
+
+/* Reduced motion: no pinning, parallax, preloader or cursor; simple fades only */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  #preloader {
+
+  #preloader,
+  #cursor-dot,
+  #cursor-ring {
     display: none !important;
   }
-  #cursor-dot, #cursor-ring {
-    display: none !important;
+
+  /* Without the horizontal pin the service row wraps into a grid */
+  @media (min-width: 1024px) {
+    #services-track {
+      flex-wrap: wrap;
+    }
+
+    #services-track .service-card {
+      width: calc((100% - 3 * var(--gutter)) / 4);
+    }
   }
-  .split-word {
-    transform: none !important;
+
+  .services-progress {
+    display: none !important;
   }
 }

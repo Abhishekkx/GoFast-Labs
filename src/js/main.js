@@ -1,6 +1,7 @@
 import '../styles/base.css';
 
-import { initLenis } from './core/lenis';
+import { ScrollTrigger } from './core/motion';
+import { initLenis, bindAnchorLinks, scrollToTarget, findHashTarget } from './core/lenis';
 import { initCursor } from './core/cursor';
 import { initMagneticButtons } from './core/magnetic';
 import { initNav } from './core/nav';
@@ -16,19 +17,20 @@ import { initProcess } from './sections/process';
 import { initPricing } from './sections/pricing';
 import { initFooter } from './sections/footer';
 
-document.addEventListener('DOMContentLoaded', async () => {
-  // Initialize foundational systems
+async function boot() {
+  // Shared across every page
   initLenis();
+  bindAnchorLinks();
   initCursor();
   initMagneticButtons();
   initNav();
   initTransitions();
 
-  // Run preloader first (if first visit), then trigger hero
   await runPreloader();
-  initHero();
+  await initHero();
+  document.documentElement.classList.add('motion-ready');
 
-  // Initialize all section interactions
+  // Homepage sections (each returns early when its section is absent)
   initMarquee();
   initServices();
   initWork();
@@ -36,4 +38,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   initProcess();
   initPricing();
   initFooter();
-});
+
+  // Pin positions depend on final text metrics, so re-measure once fonts settle,
+  // then honour a /#section link from another page.
+  await document.fonts?.ready;
+  ScrollTrigger.refresh();
+  const target = findHashTarget(window.location.hash);
+  if (target) scrollToTarget(target, { immediate: true });
+}
+
+boot();

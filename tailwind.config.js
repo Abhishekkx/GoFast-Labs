@@ -1,19 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
+    "./*.html",
     "./src/**/*.{js,ts,jsx,tsx,html}",
   ],
   darkMode: "class",
   theme: {
     extend: {
       colors: {
-        bg: "#F5F3EF",
-        surface: "#FFFFFF",
-        ink: "#0E0E0E",
-        muted: "#6B6B6B",
-        line: "#E4E1DB",
-        accent: "#C6F432",
+        bg: "rgb(var(--bg-rgb) / <alpha-value>)",
+        surface: "rgb(var(--surface-rgb) / <alpha-value>)",
+        ink: "rgb(var(--ink-rgb) / <alpha-value>)",
+        muted: "rgb(var(--muted-rgb) / <alpha-value>)",
+        line: "rgb(var(--line-rgb) / <alpha-value>)",
+        accent: "rgb(var(--accent-rgb) / <alpha-value>)",
 
         // Stitch compatibility tokens
         "surface-dim": "#dbdad6",
@@ -58,21 +58,9 @@ export default {
         "space-3xl": "7rem",
       },
       fontFamily: {
-        headline: ["Space Grotesk", "sans-serif"],
-        body: ["Geist", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
-        "display-hero": ["Space Grotesk", "sans-serif"],
-        "display-hero-mobile": ["Space Grotesk", "sans-serif"],
-        "headline-xl": ["Space Grotesk", "sans-serif"],
-        "headline-xl-mobile": ["Space Grotesk", "sans-serif"],
-        "headline-lg": ["Space Grotesk", "sans-serif"],
-        "headline-lg-mobile": ["Space Grotesk", "sans-serif"],
-        "headline-md": ["Space Grotesk", "sans-serif"],
-        "body-lead": ["Geist", "sans-serif"],
-        "body-default": ["Geist", "sans-serif"],
-        "body-sm": ["Geist", "sans-serif"],
-        "label-mono-tag": ["JetBrains Mono", "monospace"],
-        "label-mono-stat": ["JetBrains Mono", "monospace"],
+        headline: ["var(--font-display)"],
+        body: ["var(--font-body)"],
+        mono: ["var(--font-mono)"],
       },
     },
   },

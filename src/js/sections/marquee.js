@@ -1,47 +1,32 @@
-import { gsap } from 'gsap';
+import { gsap, prefersReducedMotion } from '../core/motion';
 import { getLenis } from '../core/lenis';
 
+const BASE_DURATION = 28;
+
 export function initMarquee() {
-  const marqueeInner = document.querySelector('.marquee-track');
-  if (!marqueeInner) return;
+  const track = document.querySelector('.marquee-track');
+  if (!track || prefersReducedMotion()) return;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
-
-  const baseDuration = 28;
-  const loopTween = gsap.to(marqueeInner, {
-    xPercent: -50,
-    ease: 'none',
-    duration: baseDuration,
-    repeat: -1,
-  });
+  // The track holds two identical sets, so -50% lands exactly where it started.
+  const loop = gsap.to(track, { xPercent: -50, ease: 'none', duration: BASE_DURATION, repeat: -1 });
 
   const lenis = getLenis();
-  let returnTween = null;
+  if (!lenis) return;
 
-  if (lenis) {
-    lenis.on('scroll', (e) => {
-      const velocity = e.velocity || 0;
-      // Direction: positive scroll moves left (timeScale > 0), negative scroll moves right (timeScale < 0)
-      const direction = velocity >= 0 ? 1 : -1;
-      const speedBoost = Math.min(Math.abs(velocity) * 0.15, 4.0);
-      const targetTimeScale = (1 + speedBoost) * direction;
+  let settle = null;
+  lenis.on('scroll', ({ velocity = 0 }) => {
+    const direction = velocity >= 0 ? 1 : -1;
+    const boost = Math.min(Math.abs(velocity) * 0.15, 4);
 
-      if (returnTween) returnTween.kill();
-
-      gsap.to(loopTween, {
-        timeScale: targetTimeScale,
-        duration: 0.15,
-        ease: 'power1.out',
-        overwrite: 'auto',
-        onComplete: () => {
-          returnTween = gsap.to(loopTween, {
-            timeScale: 1 * direction,
-            duration: 1.2,
-            ease: 'power2.out',
-          });
-        },
-      });
+    settle?.kill();
+    gsap.to(loop, {
+      timeScale: (1 + boost) * direction,
+      duration: 0.15,
+      ease: 'power1.out',
+      overwrite: true,
+      onComplete: () => {
+        settle = gsap.to(loop, { timeScale: direction, duration: 1.2, ease: 'power2.out' });
+      },
     });
-  }
+  });
 }

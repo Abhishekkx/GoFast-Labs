@@ -1,36 +1,21 @@
-import { gsap } from 'gsap';
+import { gsap, prefersReducedMotion } from './motion';
 
 export function initMagneticButtons() {
-  const isFinePointer = window.matchMedia('(pointer: fine)').matches;
-  if (!isFinePointer) return;
+  if (!window.matchMedia('(pointer: fine)').matches || prefersReducedMotion()) return;
 
-  const magneticElements = document.querySelectorAll('.btn-magnetic, [data-magnetic]');
+  document.querySelectorAll('.btn-magnetic, [data-magnetic]').forEach((button) => {
+    const strength = parseFloat(button.dataset.magneticStrength) || 0.3;
+    const moveX = gsap.quickTo(button, 'x', { duration: 0.3, ease: 'power2.out' });
+    const moveY = gsap.quickTo(button, 'y', { duration: 0.3, ease: 'power2.out' });
 
-  magneticElements.forEach((btn) => {
-    const strength = parseFloat(btn.getAttribute('data-magnetic-strength')) || 0.3;
-
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const deltaX = (e.clientX - centerX) * strength;
-      const deltaY = (e.clientY - centerY) * strength;
-
-      gsap.to(btn, {
-        x: deltaX,
-        y: deltaY,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
+    button.addEventListener('mousemove', (event) => {
+      const rect = button.getBoundingClientRect();
+      moveX((event.clientX - (rect.left + rect.width / 2)) * strength);
+      moveY((event.clientY - (rect.top + rect.height / 2)) * strength);
     });
 
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, {
-        x: 0,
-        y: 0,
-        duration: 0.7,
-        ease: 'elastic.out(1, 0.4)',
-      });
+    button.addEventListener('mouseleave', () => {
+      gsap.to(button, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)', overwrite: 'auto' });
     });
   });
 }

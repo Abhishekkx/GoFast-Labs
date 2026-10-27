@@ -1,0 +1,13 @@
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function read(key) {
+        try { return window.sessionStorage.getItem(key); } catch (e) { return null; }
+      }
+      root.classList.add(reduce ? 'motion-reduce' : 'motion-ok');
+      if (reduce || read('gofast_preloader_seen')) root.classList.add('preloader-done');
+      if (!reduce && read('gofast_transition') === '1') root.classList.add('is-arriving');
+      if (!reduce) setTimeout(function () { root.classList.add('motion-fallback'); }, 4000);
+    })();
+  </script>
