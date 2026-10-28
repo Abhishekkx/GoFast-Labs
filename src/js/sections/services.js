@@ -25,6 +25,15 @@ export function initServices() {
   setActive(0);
   showProgress(0);
 
+  // Below 1024px the row is a native swipe carousel; its own scroll drives the counter.
+  // (Above that it never scrolls natively, the pin below takes over.)
+  track.addEventListener('scroll', () => {
+    const max = track.scrollWidth - track.clientWidth;
+    const p = max > 0 ? track.scrollLeft / max : 0;
+    setActive(Math.round(p * (total - 1)));
+    showProgress(p);
+  }, { passive: true });
+
   const mm = gsap.matchMedia();
   mm.add({ isDesktop: MEDIA.desktop, motion: MEDIA.motion, reduce: MEDIA.reduce }, ({ conditions: { isDesktop, reduce } }) => {
     if (reduce) {
@@ -33,24 +42,14 @@ export function initServices() {
     }
 
     if (!isDesktop) {
-      cards.forEach((card, i) => {
-        gsap.fromTo(card, { opacity: 0, y: 30 }, {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'expo.out',
-          scrollTrigger: { trigger: card, start: 'top 88%' },
-        });
-        ScrollTrigger.create({
-          trigger: card,
-          start: 'top 60%',
-          end: 'bottom 60%',
-          onToggle: (self) => {
-            if (!self.isActive) return;
-            setActive(i);
-            showProgress(i / Math.max(1, total - 1));
-          },
-        });
+      // Cards slide in from the right as the row arrives, hinting that it scrolls sideways.
+      gsap.fromTo(cards, { opacity: 0, x: 60 }, {
+        opacity: 1,
+        x: 0,
+        duration: 0.9,
+        stagger: 0.08,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: track, start: 'top 85%' },
       });
       return;
     }

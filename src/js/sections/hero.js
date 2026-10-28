@@ -1,10 +1,6 @@
-import { gsap, SplitText, MEDIA, prefersReducedMotion } from '../core/motion';
+import { gsap, SplitText, MEDIA, prefersReducedMotion, fontsReady, wipeIn } from '../core/motion';
 
 const PARALLAX = [-35, -65, -45];
-
-// SplitText measures lines, so wait for the display font (capped so a slow font never blocks).
-const fontsReady = () =>
-  Promise.race([document.fonts?.ready ?? Promise.resolve(), new Promise((r) => setTimeout(r, 1200))]);
 
 export async function initHero() {
   const hero = document.getElementById('hero-section');
@@ -32,7 +28,7 @@ export async function initHero() {
   const intro = gsap.timeline({ delay: 0.05 });
   intro
     .set(headline, { opacity: 1 })
-    .fromTo(q('.hero-top-badges'), { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' })
+    .add(wipeIn(q('.hero-top-badges'), { fromY: -10, duration: 0.6 }))
     .fromTo(
       split.words,
       { yPercent: 110 },
@@ -47,11 +43,20 @@ export async function initHero() {
       '-=0.3'
     )
     .fromTo(limeBadge, { scaleX: 0 }, { scaleX: 1, transformOrigin: 'left center', duration: 0.7, ease: 'expo.out' }, '-=0.45')
-    .fromTo(supporting, { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.8, ease: 'expo.out' }, '-=0.55')
+    .add(wipeIn(supporting, { stagger: 0.08 }), '-=0.55')
+    // A wipe rather than a fade too: its small labels never sit at partial contrast.
     .fromTo(
       collage,
-      { opacity: 0, scale: 0.94, rotation: -2.5, y: 30 },
-      { opacity: 1, scale: 1, rotation: 0, y: 0, duration: 1.2, ease: 'expo.out' },
+      { clipPath: 'inset(100% 0% 0% 0% round 20px)', scale: 0.94, rotation: -2.5, y: 30 },
+      {
+        clipPath: 'inset(0% 0% 0% 0% round 20px)',
+        scale: 1,
+        rotation: 0,
+        y: 0,
+        duration: 1.2,
+        ease: 'expo.out',
+        onComplete: () => gsap.set(collage, { clearProps: 'clipPath' }),
+      },
       '-=1.1'
     );
 

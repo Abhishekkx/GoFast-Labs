@@ -25,6 +25,23 @@ export const getLenis = () => lenis;
 
 const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
 
+// Bars fixed under the header (e.g. the services switcher) also cover the landing spot.
+const scrollOffset = () => {
+  let offset = HEADER_OFFSET;
+  document.querySelectorAll('[data-scroll-offset]').forEach((bar) => {
+    if (bar.getClientRects().length) offset -= bar.offsetHeight;
+  });
+  return offset;
+};
+
+// Layout position, ignoring transforms: an element still waiting for its entrance animation
+// is drawn offset from where it will settle.
+const layoutTop = (el) => {
+  let top = 0;
+  for (let node = el; node; node = node.offsetParent) top += node.offsetTop;
+  return top;
+};
+
 // Scrolls to an element (or 0 for the top). A revealed footer is sticky, so its live
 // position is meaningless; it is always fully visible at the end of the page.
 export function scrollToTarget(target, { immediate = false } = {}) {
@@ -33,11 +50,8 @@ export function scrollToTarget(target, { immediate = false } = {}) {
     top = 0;
   } else if (target.classList.contains('site-footer')) {
     top = maxScroll();
-  } else if (lenis) {
-    lenis.scrollTo(target, { offset: HEADER_OFFSET, duration: 1.2, immediate });
-    return;
   } else {
-    top = target.getBoundingClientRect().top + window.scrollY + HEADER_OFFSET;
+    top = Math.min(maxScroll(), Math.max(0, layoutTop(target) + scrollOffset()));
   }
 
   if (lenis) lenis.scrollTo(top, { duration: 1.2, immediate });

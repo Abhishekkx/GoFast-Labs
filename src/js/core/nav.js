@@ -4,6 +4,17 @@ import { applyTextRoll } from './textRoll';
 
 const SOLID_CLASSES = ['bg-bg/95', 'backdrop-blur-md', 'border-b', 'border-line', 'shadow-sm'];
 
+const normalisePath = (path) => path.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
+
+// Marks nav links that point at the current page (page links only, not /#section links).
+function markCurrentPage() {
+  const here = normalisePath(window.location.pathname);
+  document.querySelectorAll('.site-header nav a, #mobile-menu nav a, .site-footer nav a').forEach((link) => {
+    const url = new URL(link.href, window.location.href);
+    if (!url.hash && normalisePath(url.pathname) === here) link.setAttribute('aria-current', 'page');
+  });
+}
+
 export function initNav() {
   const header = document.querySelector('.site-header');
   const progressBar = document.getElementById('scroll-progress');
@@ -21,6 +32,8 @@ export function initNav() {
     if (!header || hidden === value) return;
     hidden = value;
     header.style.transform = value ? 'translateY(-100%)' : '';
+    // Bars docked under the header follow it up and down.
+    document.documentElement.classList.toggle('header-hidden', value);
   };
 
   function onScroll() {
@@ -46,6 +59,7 @@ export function initNav() {
   // Keyboard users tabbing into a hidden header bring it back.
   header?.addEventListener('focusin', () => setHidden(false));
 
+  markCurrentPage();
   applyTextRoll(document.querySelectorAll('.nav-link-roll'), 'text-ink font-semibold');
 
   if (!toggle || !menu) return;

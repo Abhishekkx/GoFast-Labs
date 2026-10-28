@@ -230,13 +230,63 @@ a:focus-visible .text-roll .text-roll-inner {
   margin-right: 2rem;
 }
 
-/* Services */
+.marquee-compact .marquee-set > * {
+  margin-right: 1.25rem;
+}
+
+/* Services: a native swipe row below 1024px, a pinned horizontal track above */
 .service-card {
+  width: min(84%, 340px);
   transition: border-color 0.3s ease;
 }
 
+.service-card:hover,
 .service-card.is-focal {
   border-color: var(--ink);
+}
+
+.service-card-arrow {
+  transition: transform var(--dur-fast) var(--ease-reveal), color 0.25s ease;
+}
+
+.service-card:hover .service-card-arrow,
+.service-card:focus-visible .service-card-arrow {
+  transform: rotate(45deg);
+  color: var(--ink);
+}
+
+@media (min-width: 1280px) {
+  .service-card {
+    width: 380px;
+  }
+}
+
+@media (max-width: 1023px) {
+  #services-track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--margin-mobile) * -1);
+    padding: 4px var(--margin-mobile) 16px;
+    scroll-padding-inline: var(--margin-mobile);
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  #services-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  #services-track .service-card {
+    scroll-snap-align: start;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #services-track {
+    margin-inline: calc(var(--margin) * -1);
+    padding-inline: var(--margin);
+    scroll-padding-inline: var(--margin);
+  }
 }
 
 #services-progress-bar {
@@ -433,6 +483,16 @@ a:focus-visible .text-roll .text-roll-inner {
 #mobile-menu-toggle[aria-expanded="true"] .icon-menu,
 #mobile-menu-toggle[aria-expanded="false"] .icon-close {
   display: none;
+}
+
+/* Current page in the header nav */
+.site-header nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.mobile-nav-link[aria-current="page"] {
+  text-decoration-line: underline;
 }
 
 /* Reduced motion: no pinning, parallax, preloader or cursor; simple fades only */

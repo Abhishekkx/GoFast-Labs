@@ -9,6 +9,7 @@ import { runPreloader } from './core/preloader';
 import { initTransitions } from './core/transitions';
 
 import { initHero } from './sections/hero';
+import { initPageHero } from './sections/pageHero';
 import { initMarquee } from './sections/marquee';
 import { initServices } from './sections/services';
 import { initWork } from './sections/work';
@@ -16,6 +17,14 @@ import { initNumbers } from './sections/numbers';
 import { initProcess } from './sections/process';
 import { initPricing } from './sections/pricing';
 import { initFooter } from './sections/footer';
+import { initServiceNav } from './sections/serviceNav';
+import { initServiceCards } from './sections/serviceCards';
+import { initBundles } from './sections/bundles';
+import { initFaq } from './sections/faq';
+import { initCtaBand } from './sections/ctaBand';
+
+// Lets the browser handle input and paint between section set-ups instead of one long task.
+const yieldToMain = () => new Promise((resolve) => setTimeout(resolve, 0));
 
 async function boot() {
   // Shared across every page
@@ -28,16 +37,18 @@ async function boot() {
 
   await runPreloader();
   await initHero();
+  await initPageHero();
   document.documentElement.classList.add('motion-ready');
 
-  // Homepage sections (each returns early when its section is absent)
-  initMarquee();
-  initServices();
-  initWork();
-  initNumbers();
-  initProcess();
-  initPricing();
-  initFooter();
+  // Page sections (each returns early when its section is absent)
+  const sections = [
+    initMarquee, initServices, initWork, initNumbers, initProcess, initPricing,
+    initServiceNav, initServiceCards, initBundles, initFaq, initCtaBand, initFooter,
+  ];
+  for (const init of sections) {
+    init();
+    await yieldToMain();
+  }
 
   // Pin positions depend on final text metrics, so re-measure once fonts settle,
   // then honour a /#section link from another page.

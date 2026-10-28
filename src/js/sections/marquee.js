@@ -4,11 +4,16 @@ import { getLenis } from '../core/lenis';
 const BASE_DURATION = 28;
 
 export function initMarquee() {
-  const track = document.querySelector('.marquee-track');
-  if (!track || prefersReducedMotion()) return;
+  const tracks = [...document.querySelectorAll('.marquee-track')];
+  if (!tracks.length || prefersReducedMotion()) return;
 
-  // The track holds two identical sets, so -50% lands exactly where it started.
-  const loop = gsap.to(track, { xPercent: -50, ease: 'none', duration: BASE_DURATION, repeat: -1 });
+  // Each track holds two identical sets, so -50% lands exactly where it started.
+  const loops = tracks.map((track) => gsap.to(track, {
+    xPercent: -50,
+    ease: 'none',
+    duration: Number(track.dataset.marqueeDuration) || BASE_DURATION,
+    repeat: -1,
+  }));
 
   const lenis = getLenis();
   if (!lenis) return;
@@ -19,13 +24,13 @@ export function initMarquee() {
     const boost = Math.min(Math.abs(velocity) * 0.15, 4);
 
     settle?.kill();
-    gsap.to(loop, {
+    gsap.to(loops, {
       timeScale: (1 + boost) * direction,
       duration: 0.15,
       ease: 'power1.out',
       overwrite: true,
       onComplete: () => {
-        settle = gsap.to(loop, { timeScale: direction, duration: 1.2, ease: 'power2.out' });
+        settle = gsap.to(loops, { timeScale: direction, duration: 1.2, ease: 'power2.out' });
       },
     });
   });
