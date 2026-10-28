@@ -22,6 +22,7 @@ import { initServiceCards } from './sections/serviceCards';
 import { initBundles } from './sections/bundles';
 import { initFaq } from './sections/faq';
 import { initCtaBand } from './sections/ctaBand';
+import { initAbout } from './sections/about';
 
 // Lets the browser handle input and paint between section set-ups instead of one long task.
 const yieldToMain = () => new Promise((resolve) => setTimeout(resolve, 0));
@@ -43,7 +44,7 @@ async function boot() {
   // Page sections (each returns early when its section is absent)
   const sections = [
     initMarquee, initServices, initWork, initNumbers, initProcess, initPricing,
-    initServiceNav, initServiceCards, initBundles, initFaq, initCtaBand, initFooter,
+    initServiceNav, initServiceCards, initBundles, initFaq, initCtaBand, initAbout, initFooter,
   ];
   for (const init of sections) {
     init();
