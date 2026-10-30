@@ -218,6 +218,9 @@ a:focus-visible .text-roll .text-roll-inner {
 }
 
 /* Hairline grid */
+.site-brand-mark { display: inline-block; }
+.site-brand-mark-inverse { filter: brightness(0) invert(1); }
+
 .hairline-grid {
   background-image:
     linear-gradient(to right, var(--line) 1px, transparent 1px),
@@ -294,6 +297,10 @@ a:focus-visible .text-roll .text-roll-inner {
 }
 
 /* Pricing: animated conic border beam on the featured card */
+.pricing-benefits li { display: flex; align-items: flex-start; gap: 0.65rem; line-height: 1.45; }
+.pricing-benefits li b { display: grid; place-items: center; flex: 0 0 1.1rem; width: 1.1rem; height: 1.1rem; margin-top: 0.08rem; border-radius: 50%; background: var(--accent); color: var(--ink); font-size: 0.7rem; }
+.pricing-benefits-inverse li b { background: var(--accent); color: var(--ink); }
+
 @property --beam-angle {
   syntax: '<angle>';
   inherits: false;

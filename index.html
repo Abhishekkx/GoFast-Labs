@@ -234,6 +234,34 @@
         </div>
       </section>
 
+      <!-- ================= HOW WE PARTNER ================= -->
+      <section id="engagement-model" class="px-margin-mobile md:px-margin py-space-2xl border-t border-line" aria-labelledby="engagement-heading">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-end mb-space-xl">
+          <div class="lg:col-span-7">
+            <span class="font-mono text-[11px] uppercase tracking-widest text-secondary">One team, two ways to work</span>
+            <h2 id="engagement-heading" class="font-headline text-4xl md:text-6xl tracking-tighter leading-[0.98] font-bold mt-space-sm">Only what you need.<br /><span class="text-secondary">Or the whole thing.</span></h2>
+          </div>
+          <p class="lg:col-span-4 lg:col-start-9 text-secondary leading-relaxed">Start with a product build, or bring us in to run the full digital journey from first idea through launch and ongoing improvement.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+          <article class="engagement-card bg-surface rounded-card border border-line p-space-xl" data-engagement-card>
+            <div class="font-mono text-[11px] uppercase tracking-widest text-secondary">Product studio</div>
+            <h3 class="font-headline text-2xl md:text-3xl font-bold tracking-tight mt-space-sm">Build the product.</h3>
+            <p class="text-secondary leading-relaxed mt-2 max-w-xl">A focused, senior team shapes, designs, and builds a digital product—such as a website, web platform, or mobile app—with you.</p>
+            <a href="#pricing" class="inline-flex items-center gap-2 mt-space-lg text-sm font-semibold text-ink hover:gap-3 transition-all">See product pricing <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="engagement-card bg-ink text-surface rounded-card p-space-xl relative overflow-hidden" data-engagement-card>
+            <div class="absolute inset-0 opacity-15 pointer-events-none" aria-hidden="true" style="background-image:linear-gradient(rgb(255 255 255 / 12%) 1px,transparent 1px),linear-gradient(90deg,rgb(255 255 255 / 12%) 1px,transparent 1px);background-size:32px 32px"></div>
+            <div class="relative">
+              <div class="font-mono text-[11px] uppercase tracking-widest text-surface-dim">Full-service digital partner</div>
+              <h3 class="font-headline text-2xl md:text-3xl font-bold tracking-tight mt-space-sm">Take it end to end.</h3>
+              <p class="text-surface-dim leading-relaxed mt-2 max-w-xl">One direct team across strategy, design, engineering, AI integrations, quality, launch, and ongoing care. No hand-offs or middle layers.</p>
+              <a href="#pricing" class="inline-flex items-center gap-2 mt-space-lg text-sm font-semibold text-accent hover:gap-3 transition-all">See full-service pricing <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <!-- ================= 01 — SERVICES SECTION (13 services; horizontal pin on desktop, swipe row below) ================= -->
       <section id="services" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-2xl overflow-hidden">
         <!-- Section Header -->
@@ -839,160 +867,104 @@
       </section>
 
       <!-- ================= 04 — PRICING SECTION ================= -->
-      <section id="pricing" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-2xl">
-        <div class="text-center max-w-xl mx-auto space-y-space-sm">
-          <div class="font-mono text-xs text-secondary uppercase tracking-widest">04 — PRICING</div>
-          <h2 class="font-headline text-3xl md:text-5xl lg:text-6xl text-ink font-bold tracking-tight">Simple plans. No surprises.</h2>
-          <p class="font-body text-base text-secondary">A fixed price for a defined project, or a monthly plan for ongoing work.</p>
+      <section id="pricing" class="w-full px-margin-mobile md:px-margin py-space-3xl flex flex-col gap-space-xl" aria-labelledby="pricing-heading">
+        <div class="text-center max-w-3xl mx-auto space-y-space-sm">
+          <div class="font-mono text-xs text-secondary uppercase tracking-widest">04 — CLEAR, FLEXIBLE PRICING</div>
+          <h2 id="pricing-heading" class="font-headline text-3xl md:text-5xl lg:text-6xl text-ink font-bold tracking-tight">Choose how much we take on.</h2>
+          <p class="font-body text-base text-secondary leading-relaxed">Build a product on its own, bring us in for the full digital journey, add a feature, or let us handle it end to end.</p>
         </div>
 
-        <!-- Pricing Switcher Pill -->
-        <div class="flex justify-center">
-          <div id="pricing-toggle" class="relative inline-flex p-1 rounded-full bg-surface-container border border-line" role="group" aria-label="Billing period">
-            <!-- Sliding background pill indicator -->
-            <div id="pricing-toggle-pill" class="absolute top-1 bottom-1 left-1 rounded-full bg-ink shadow-sm pointer-events-none" aria-hidden="true"></div>
-            
-            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-semibold text-surface is-active transition-colors" data-plan="project" type="button" aria-pressed="true">
-              Project-based
-            </button>
-            <button class="relative z-10 px-6 py-2.5 rounded-full font-body text-xs md:text-sm font-medium text-secondary hover:text-ink transition-colors" data-plan="monthly" type="button" aria-pressed="false">
-              Monthly subscription
-            </button>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-gutter items-stretch">
+          <article class="pricing-card bg-surface rounded-card border border-line p-space-lg xl:p-space-xl flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="font-mono text-xs text-secondary uppercase mb-2">01 / PRODUCT ONLY</div>
+              <h3 class="font-headline text-2xl font-bold text-ink">Build my product</h3>
+              <p class="font-body text-secondary text-sm mt-2 min-h-12">A focused build for the digital product your business needs.</p>
+              <div class="my-space-lg">
+                <div class="font-headline text-3xl xl:text-4xl font-bold tracking-tight text-ink tabular-nums">₹15,000</div>
+                <div class="font-mono text-xs text-secondary mt-1">/ $158 · one-time project fee</div>
+              </div>
+              <ul class="pricing-benefits space-y-3 text-sm text-ink">
+                <li><b aria-hidden="true">✓</b><span>Core product planning and scope</span></li>
+                <li><b aria-hidden="true">✓</b><span>Web and/or mobile app foundation</span></li>
+                <li><b aria-hidden="true">✓</b><span>Essential interface and core features</span></li>
+                <li><b aria-hidden="true">✓</b><span>Testing, deployment, and handover</span></li>
+              </ul>
+            </div>
+            <a class="btn-magnetic w-full mt-space-xl py-3.5 rounded-full border border-ink text-ink font-body text-sm font-semibold text-center hover:bg-ink hover:text-surface transition-colors" href="#contact-hub">Build a product</a>
+          </article>
+
+          <article class="pricing-card bg-surface rounded-card border border-line p-space-lg xl:p-space-xl flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="font-mono text-xs text-secondary uppercase mb-2">02 / FULL SERVICE</div>
+              <h3 class="font-headline text-2xl font-bold text-ink">Run the full launch</h3>
+              <p class="font-body text-secondary text-sm mt-2 min-h-12">One team to take a defined project from idea through launch.</p>
+              <div class="my-space-lg">
+                <div class="font-headline text-3xl xl:text-4xl font-bold tracking-tight text-ink tabular-nums">₹30,000</div>
+                <div class="font-mono text-xs text-secondary mt-1">/ $316 · one-time project fee</div>
+              </div>
+              <ul class="pricing-benefits space-y-3 text-sm text-ink">
+                <li><b aria-hidden="true">✓</b><span>Product and delivery planning</span></li>
+                <li><b aria-hidden="true">✓</b><span>Design, development, and integrations</span></li>
+                <li><b aria-hidden="true">✓</b><span>Quality checks and launch support</span></li>
+                <li><b aria-hidden="true">✓</b><span>SEO and analytics foundations</span></li>
+              </ul>
+            </div>
+            <a class="btn-magnetic w-full mt-space-xl py-3.5 rounded-full border border-ink text-ink font-body text-sm font-semibold text-center hover:bg-ink hover:text-surface transition-colors" href="#contact-hub">Plan a full-service launch</a>
+          </article>
+
+          <article class="pricing-card bg-surface rounded-card border border-line p-space-lg xl:p-space-xl flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="font-mono text-xs text-secondary uppercase mb-2">03 / ADD-ON WORK</div>
+              <h3 class="font-headline text-2xl font-bold text-ink">Add a feature</h3>
+              <p class="font-body text-secondary text-sm mt-2 min-h-12">Extend an existing product or one we build together.</p>
+              <div class="my-space-lg">
+                <div class="font-headline text-3xl xl:text-4xl font-bold tracking-tight text-ink tabular-nums">₹3,000</div>
+                <div class="font-mono text-xs text-secondary mt-1">/ $32 · starting per scoped feature</div>
+              </div>
+              <ul class="pricing-benefits space-y-3 text-sm text-ink">
+                <li><b aria-hidden="true">✓</b><span>AI, RAG, ML, or automation</span></li>
+                <li><b aria-hidden="true">✓</b><span>Third-party APIs and integrations</span></li>
+                <li><b aria-hidden="true">✓</b><span>New workflows or product capabilities</span></li>
+                <li><b aria-hidden="true">✓</b><span>Requirements reviewed before quoting</span></li>
+              </ul>
+            </div>
+            <a class="btn-magnetic w-full mt-space-xl py-3.5 rounded-full border border-ink text-ink font-body text-sm font-semibold text-center hover:bg-ink hover:text-surface transition-colors" href="#contact-hub">Scope an addition</a>
+          </article>
+
+          <article class="pricing-card is-featured border-beam-card bg-ink text-surface rounded-card p-space-lg xl:p-space-xl flex flex-col justify-between relative shadow-2xl">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink px-4 py-1 rounded-full font-mono text-[10px] uppercase tracking-wider font-bold shadow-md z-20 whitespace-nowrap">Best end-to-end value</div>
+            <div class="pt-2">
+              <div class="font-mono text-xs text-accent uppercase mb-2">04 / COMPLETE PACKAGE</div>
+              <h3 class="font-headline text-2xl font-bold text-surface">Build &amp; grow</h3>
+              <p class="font-body text-surface-dim text-sm mt-2 min-h-12">A complete, agreed project scope with six months of care.</p>
+              <div class="my-space-lg">
+                <div class="font-headline text-3xl xl:text-4xl font-bold tracking-tight text-surface tabular-nums">₹60,000</div>
+                <div class="font-mono text-xs text-surface-dim mt-1">/ $632 · complete package</div>
+              </div>
+              <ul class="pricing-benefits pricing-benefits-inverse space-y-3 text-sm text-surface">
+                <li><b aria-hidden="true">✓</b><span>Planning, design, and agreed web/mobile build</span></li>
+                <li><b aria-hidden="true">✓</b><span>Agreed AI, RAG, ML, or automation features</span></li>
+                <li><b aria-hidden="true">✓</b><span>Testing, launch, and handover</span></li>
+                <li><b aria-hidden="true">✓</b><span>Six months of maintenance included</span></li>
+              </ul>
+            </div>
+            <a class="btn-magnetic w-full mt-space-xl py-3.5 rounded-full bg-accent text-ink font-body text-sm font-bold text-center hover:bg-accent/90 transition-colors shadow-md z-20" href="#contact-hub">Plan my end-to-end project</a>
+          </article>
         </div>
 
-        <!-- 3 Pricing Cards Side-by-Side -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-stretch">
-          
-          <!-- Plan 1: Launch -->
-          <div class="pricing-card bg-surface rounded-card border border-line p-space-xl flex flex-col justify-between shadow-sm">
-            <div>
-              <div class="font-mono text-xs text-secondary uppercase mb-2">ONE PROJECT</div>
-              <h3 class="font-headline text-2xl font-bold text-ink">Launch</h3>
-              <p class="font-body text-secondary text-sm mt-1 mb-6">A website or MVP with a fixed scope and price.</p>
-              
-              <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
-                <span id="launch-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-ink tabular-nums">$2,499</span>
-                <span id="launch-cadence" class="font-mono text-xs text-secondary uppercase">/ fixed</span>
-              </div>
-
-              <div class="space-y-3.5 mb-8">
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>1–2 weeks turnaround</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>Full responsive design system</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>CMS or modern full-stack code</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>SEO &amp; analytics instrumentation</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>30 days post-launch support</span>
-                </div>
-              </div>
-            </div>
-
-            <a class="btn-magnetic w-full py-3.5 rounded-full border border-ink text-ink font-body text-sm font-semibold text-center hover:bg-ink hover:text-surface transition-colors" href="#contact-hub">
-              Choose Launch
-            </a>
+        <div class="pricing-care bg-surface-container rounded-card border border-line p-space-lg md:p-space-xl grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+          <div class="md:col-span-8">
+            <div class="font-mono text-[11px] text-secondary uppercase tracking-widest">Optional monthly care · for product-only or full-service projects</div>
+            <h3 class="font-headline text-xl md:text-2xl font-bold text-ink mt-1">Keep your product running and improving.</h3>
+            <p class="text-sm text-secondary leading-relaxed mt-1">Ongoing maintenance, monitoring, fixes, and small updates. Larger feature work is scoped separately.</p>
           </div>
-
-          <!-- Plan 2: Scale (Highlighted Center Card with Border Beam) -->
-          <div class="pricing-card is-featured border-beam-card bg-ink text-surface rounded-card p-space-xl flex flex-col justify-between relative shadow-2xl">
-            <!-- Most Popular Pill -->
-            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-ink px-4 py-1 rounded-full font-mono text-[11px] uppercase tracking-wider font-bold shadow-md z-20">
-              Most popular
-            </div>
-
-            <div>
-              <div class="font-mono text-xs text-accent uppercase mb-2">ONGOING WORK</div>
-              <h3 class="font-headline text-2xl font-bold text-surface">Scale</h3>
-              <p class="font-body text-surface-dim text-sm mt-1 mb-6">Ongoing design &amp; dev subscription. Pause or cancel anytime.</p>
-              
-              <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
-                <span id="scale-price" class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-surface tabular-nums">$3,999</span>
-                <span id="scale-cadence" class="font-mono text-xs text-surface-dim uppercase">/ month</span>
-              </div>
-
-              <div class="space-y-3.5 mb-8">
-                <div class="flex items-center gap-3 text-sm text-surface">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
-                  <span>Continuous feature delivery</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-surface">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
-                  <span>48h turnaround per request</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-surface">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
-                  <span>Unlimited design &amp; dev backlog</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-surface">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
-                  <span>Direct Slack channel with founders</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-surface">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-accent" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></svg>
-                  <span>Senior staff engineers only</span>
-                </div>
-              </div>
-            </div>
-
-            <a class="btn-magnetic w-full py-3.5 rounded-full bg-accent text-ink font-body text-sm font-bold text-center hover:bg-accent/90 transition-colors shadow-md z-20" href="#contact-hub">
-              Start Scale Subscription
-            </a>
+          <div class="md:col-span-4 md:text-right">
+            <div class="font-headline text-2xl md:text-3xl font-bold text-ink">₹3,500 <span class="text-base font-medium text-secondary">/ $37</span></div>
+            <div class="font-mono text-xs text-secondary">per month · optional</div>
           </div>
-
-          <!-- Plan 3: Partner -->
-          <div class="pricing-card bg-surface rounded-card border border-line p-space-xl flex flex-col justify-between shadow-sm">
-            <div>
-              <div class="font-mono text-xs text-secondary uppercase mb-2">DEDICATED TEAM</div>
-              <h3 class="font-headline text-2xl font-bold text-ink">Partner</h3>
-              <p class="font-body text-secondary text-sm mt-1 mb-6">A dedicated team for complex products and AI systems.</p>
-              
-              <div class="flex items-baseline gap-1 mb-8 overflow-hidden h-12">
-                <span class="font-headline text-4xl lg:text-5xl font-bold tracking-tight text-ink">Custom</span>
-                <span class="font-mono text-xs text-secondary uppercase">/ bespoke</span>
-              </div>
-
-              <div class="space-y-3.5 mb-8">
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>Embedded full-stack squad</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>Custom AI, ML &amp; RAG systems</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>Weekly synchronized sprint roadmaps</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>Enterprise SLA with guaranteed uptime</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm text-ink">
-                  <svg class="w-[18px] h-[18px] shrink-0 text-ink" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true" focusable="false"><path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
-                  <span>SOC2 &amp; security posture audits</span>
-                </div>
-              </div>
-            </div>
-
-            <a class="btn-magnetic w-full py-3.5 rounded-full border border-ink text-ink font-body text-sm font-semibold text-center hover:bg-ink hover:text-surface transition-colors" href="#contact-hub">
-              Talk to us
-            </a>
-          </div>
-
         </div>
+        <p class="text-center font-mono text-[10px] md:text-[11px] text-secondary leading-relaxed">USD amounts are approximate conversions at ₹95 per $1. Prices cover the agreed scope; hosting, paid third-party tools, and requirements outside that scope are quoted separately before work begins.</p>
       </section>
 
     </div>

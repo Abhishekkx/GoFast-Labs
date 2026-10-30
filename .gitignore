@@ -25,3 +25,6 @@ dist-ssr
 
 # Vercel
 .vercel
+
+# Source design files are kept locally; production assets live in public/.
+designs/

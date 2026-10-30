@@ -1,12 +1,22 @@
-import { gsap, MEDIA, fadeInOnEnter, prefersReducedMotion } from '../core/motion';
-import { createRoller, rollWord } from '../core/roller';
-
-const PLANS = {
-  project: { launch: ['$2,499', '/ fixed'], scale: ['$3,999', '/ month'] },
-  monthly: { launch: ['$4,999', '/ month'], scale: ['$3,999', '/ month'] },
-};
+import { gsap, MEDIA, fadeInOnEnter } from '../core/motion';
 
 export function initPricing() {
+  const engagement = document.getElementById('engagement-model');
+  if (engagement) {
+    const cards = [...engagement.querySelectorAll('[data-engagement-card]')];
+    const mm = gsap.matchMedia();
+    mm.add({ motion: MEDIA.motion, reduce: MEDIA.reduce }, ({ conditions: { reduce } }) => {
+      if (reduce) {
+        fadeInOnEnter(cards, engagement, 'top 82%');
+        return;
+      }
+      gsap.fromTo(cards, { y: 24, opacity: 0 }, {
+        y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'expo.out',
+        scrollTrigger: { trigger: engagement, start: 'top 78%', once: true },
+      });
+    });
+  }
+
   const section = document.getElementById('pricing');
   if (!section) return;
 
@@ -22,80 +32,15 @@ export function initPricing() {
       fadeInOnEnter(cards, section, 'top 75%').eventCallback('onComplete', settle);
       return;
     }
-    // The featured card rests 8px higher on desktop (CSS); animate to that same spot so clearing is seamless.
     const restY = (card) => (isDesktop && card.classList.contains('is-featured') ? -8 : 0);
     gsap.fromTo(cards, { opacity: 0, y: (i, card) => restY(card) + 40 }, {
       opacity: 1,
       y: (i, card) => restY(card),
       duration: 0.8,
-      stagger: 0.15,
+      stagger: 0.12,
       ease: 'expo.out',
-      scrollTrigger: { trigger: section, start: 'top 75%' },
+      scrollTrigger: { trigger: section, start: 'top 75%', once: true },
       onComplete: settle,
-    });
-  });
-
-  const toggle = document.getElementById('pricing-toggle');
-  const pill = document.getElementById('pricing-toggle-pill');
-  const buttons = toggle ? [...toggle.querySelectorAll('button[data-plan]')] : [];
-  if (buttons.length < 2) return;
-
-  const setLaunchPrice = createRoller(document.getElementById('launch-price'));
-  const setScalePrice = createRoller(document.getElementById('scale-price'));
-  const launchCadence = document.getElementById('launch-cadence');
-  const scaleCadence = document.getElementById('scale-cadence');
-
-  // At rest the pill sits exactly behind the active button. To move it, it briefly spans the
-  // whole track and a clip-path slides between the two slots (no animated layout properties);
-  // keeping it small at rest means nothing dark sits behind the inactive label.
-  const PAD = 4;
-  const restOn = (button) => {
-    gsap.set(pill, { left: button.offsetLeft, width: button.offsetWidth, clipPath: 'none' });
-  };
-  const clipFor = (button, trackWidth) => {
-    const left = button.offsetLeft - PAD;
-    const right = trackWidth - left - button.offsetWidth;
-    return `inset(0px ${right}px 0px ${left}px round 9999px)`;
-  };
-  const slide = (from, to) => {
-    const trackWidth = toggle.clientWidth - PAD * 2;
-    gsap.set(pill, { left: PAD, width: trackWidth, clipPath: clipFor(from, trackWidth) });
-    gsap.to(pill, {
-      clipPath: clipFor(to, trackWidth),
-      duration: 0.35,
-      ease: 'power2.out',
-      overwrite: true,
-      onComplete: () => restOn(to),
-    });
-  };
-  const activeButton = () => buttons.find((b) => b.getAttribute('aria-pressed') === 'true') ?? buttons[0];
-  restOn(activeButton());
-  new ResizeObserver(() => restOn(activeButton())).observe(toggle);
-
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      if (button.getAttribute('aria-pressed') === 'true') return;
-      const previous = activeButton();
-
-      buttons.forEach((b) => {
-        const active = b === button;
-        b.setAttribute('aria-pressed', String(active));
-        b.classList.toggle('is-active', active);
-        b.classList.toggle('text-surface', active);
-        b.classList.toggle('font-semibold', active);
-        b.classList.toggle('text-secondary', !active);
-        b.classList.toggle('hover:text-ink', !active);
-        b.classList.toggle('font-medium', !active);
-      });
-
-      if (prefersReducedMotion()) restOn(button);
-      else slide(previous, button);
-
-      const plan = PLANS[button.dataset.plan] ?? PLANS.project;
-      setLaunchPrice(plan.launch[0]);
-      rollWord(launchCadence, plan.launch[1]);
-      setScalePrice(plan.scale[0]);
-      rollWord(scaleCadence, plan.scale[1]);
     });
   });
 }
